@@ -1,36 +1,15 @@
 {{-- Testimonial Section Component (Slack-inspired Carousel) --}}
+@php
+    $items = isset($testimonials) && $testimonials->count()
+        ? $testimonials->map(fn($t) => ['quote' => $t->quote, 'author' => $t->author, 'role' => $t->role, 'initials' => $t->initials])->values()->toArray()
+        : [];
+@endphp
 <section class="bg-white py-24 lg:py-32 relative overflow-hidden" x-data="{ 
     active: 0, 
-    testimonials: [
-        {
-            quote: 'La integración de software e imprenta propia es lo que nos hizo elegir a CEO Online. Resolvemos todo en un solo lugar y ahorramos días de logística cada mes.',
-            author: 'Administración VITALE',
-            initials: 'AV'
-        },
-        {
-            quote: 'La transparencia hacia el propietario es total. Tener un panel interactivo y el chat centralizado redujo considerablemente las consultas en oficina.',
-            author: 'Administración GULFI',
-            initials: 'AG'
-        },
-        {
-            quote: 'El cerebro colectivo del sistema nos permite gestionar más de 50 edificios con el mismo personal. La eficiencia operativa es nuestra mayor ventaja.',
-            author: 'Administración MASOLA',
-            initials: 'AM'
-        },
-        {
-            quote: 'Elegimos CEO Online por ser la solución líder en Mar del Plata. Es tecnología PropTech real que entiende las necesidades locales del administrador.',
-            author: 'Administración GUILLONE',
-            initials: 'AG'
-        },
-        {
-            quote: 'La automatización con IA para procesar comprobantes es un antes y un después. Recuperamos más de 20 horas semanales de carga manual de datos.',
-            author: 'Administración SIANO Y ASOCIADOS',
-            initials: 'AS'
-        }
-    ],
-    next() { this.active = (this.active + 1) % this.testimonials.length },
-    prev() { this.active = (this.active - 1 + this.testimonials.length) % this.testimonials.length }
-}">
+    testimonials: {{ Js::from($items) }},
+    next() { this.testimonials.length && (this.active = (this.active + 1) % this.testimonials.length) },
+    prev() { this.testimonials.length && (this.active = (this.active - 1 + this.testimonials.length) % this.testimonials.length) }
+}" x-show="testimonials.length > 0">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-16 lg:mb-24">
             <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest animate-fade-in">
@@ -74,7 +53,7 @@
                                 </blockquote>
                                 <div>
                                     <p class="text-xl lg:text-2xl font-black text-primary tracking-tight" x-text="t.author"></p>
-                                    <p class="text-text-secondary font-bold text-xs lg:text-sm uppercase tracking-[0.2em] mt-2">Usuario verificado de CEO Online</p>
+                                    <p class="text-text-secondary font-bold text-xs lg:text-sm uppercase tracking-[0.2em] mt-2" x-text="t.role"></p>
                                 </div>
                             </div>
                         </div>
@@ -84,12 +63,12 @@
 
             {{-- Controls --}}
             <div class="mt-12 lg:mt-16 flex justify-center lg:justify-start lg:ml-[250px] gap-4 relative z-20">
-                <button @click="prev()" class="p-4 bg-bg border border-border-light rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm">
+                <button @click="prev()" aria-label="Testimonio anterior" class="p-4 bg-bg border border-border-light rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
-                <button @click="next()" class="p-4 bg-bg border border-border-light rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm">
+                <button @click="next()" aria-label="Siguiente testimonio" class="p-4 bg-bg border border-border-light rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -97,9 +76,12 @@
             </div>
             
             {{-- Dots Indicator --}}
-            <div class="absolute bottom-[-60px] lg:bottom-4 right-0 flex gap-2">
+            <div class="absolute bottom-[-60px] lg:bottom-4 right-0 flex gap-2" role="tablist" aria-label="Testimonios">
                 <template x-for="(t, index) in testimonials" :key="index">
                     <button @click="active = index" 
+                            :aria-label="'Ir al testimonio ' + (index + 1)"
+                            role="tab"
+                            :aria-selected="active === index"
                             class="h-1.5 transition-all duration-500 rounded-full"
                             :class="active === index ? 'w-12 bg-primary' : 'w-3 bg-border-light hover:bg-primary/30'"></button>
                 </template>

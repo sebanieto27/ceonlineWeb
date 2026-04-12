@@ -132,7 +132,7 @@
 
         {{-- Desktop CTAs --}}
         <div class="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0 relative z-50">
-            <a href="{{ route('admin.login') }}" class="text-[14px] font-bold text-gray-800 hover:text-primary transition-colors px-2">Iniciar sesión</a>
+            <a href="{{ route('filament.admin.auth.login') }}" class="text-[14px] font-bold text-gray-800 hover:text-primary transition-colors px-2">Iniciar sesión</a>
             <a href="{{ route('demo') }}" class="px-5 py-2.5 text-[13px] font-bold text-primary border border-gray-200 rounded-full hover:border-primary hover:bg-primary/5 transition-all uppercase tracking-widest whitespace-nowrap hidden xl:block">Solicitar Demo</a>
             <a href="{{ route('demo') }}" class="px-6 py-2.5 text-[13px] font-bold text-white bg-primary rounded-full hover:bg-primary-dark hover:scale-105 transition-all duration-300 uppercase tracking-widest whitespace-nowrap shadow-[0_4px_14px_rgba(23,157,217,0.39)]">Comenzar</a>
         </div>
@@ -167,7 +167,7 @@
             <div class="pt-2 space-y-3 flex flex-col">
                 <a href="{{ route('demo') }}" class="px-5 py-3.5 text-sm font-bold text-white bg-primary rounded-xl text-center uppercase tracking-wide shadow-sm hover:bg-primary-dark transition-colors">Comenzar</a>
                 <a href="{{ route('demo') }}" class="px-5 py-3.5 text-sm font-bold text-primary border-2 border-primary/20 rounded-xl text-center uppercase tracking-wide hover:border-primary hover:bg-primary/5 transition-colors">Solicitar Demo</a>
-                <a href="{{ route('admin.login') }}" class="py-3 text-[15px] font-bold text-gray-600 text-center uppercase tracking-widest mt-2 hover:text-primary transition-colors">Iniciar sesión</a>
+                <a href="{{ route('filament.admin.auth.login') }}" class="py-3 text-[15px] font-bold text-gray-600 text-center uppercase tracking-widest mt-2 hover:text-primary transition-colors">Iniciar sesión</a>
             </div>
         </div>
     </div>

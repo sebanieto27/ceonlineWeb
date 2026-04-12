@@ -17,7 +17,7 @@
     },
     "headline": "{{ $post->title }}",
     @if($post->image)"image": ["{{ $post->image }}"],@endif
-    "datePublished": "{{ $post->published_at->toIso8601String() }}",
+    "datePublished": "{{ ($post->published_at ?? $post->created_at)->toIso8601String() }}",
     "dateModified": "{{ $post->updated_at->toIso8601String() }}",
     "author": {
         "@@type": "Organization",
@@ -34,6 +34,17 @@
     }
 }
 </script>
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@@type": "ListItem", "position": 1, "name": "Inicio", "item": "{{ route('home') }}" },
+        { "@@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ route('blog.index') }}" },
+        { "@@type": "ListItem", "position": 3, "name": "{{ $post->title }}" }
+    ]
+}
+</script>
 @endsection
 
 @section('content')
@@ -43,16 +54,23 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
         <div class="absolute inset-0 bg-texture-dots opacity-20 pointer-events-none"></div>
         <div class="relative z-10">
-            <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-2 text-primary font-black text-[10px] uppercase tracking-[0.3em] mb-12 hover:text-text-primary transition-colors">
-                ← Volver al blog
-            </a>
+            {{-- Breadcrumbs --}}
+            <nav class="flex items-center justify-center gap-2 text-sm text-text-secondary font-medium mb-8">
+                <a href="{{ route('home') }}" class="hover:text-primary transition-colors">Inicio</a>
+                <span class="text-border-light">/</span>
+                <a href="{{ route('blog.index') }}" class="hover:text-primary transition-colors">Blog</a>
+                @if($post->category)
+                <span class="text-border-light">/</span>
+                <span class="text-primary">{{ $post->category->name }}</span>
+                @endif
+            </nav>
             <h1 class="text-4xl lg:text-[5rem] font-black text-text-primary leading-[1.05] tracking-tight mb-12">
                 {{ $post->title }}
             </h1>
             <div class="flex items-center justify-center gap-6 text-[10px] font-black uppercase tracking-widest text-text-secondary">
-                <time datetime="{{ $post->published_at->toDateString() }}">{{ $post->published_at->format('d de F, Y') }}</time>
+                <time datetime="{{ ($post->published_at ?? $post->created_at)->toDateString() }}">{{ ($post->published_at ?? $post->created_at)->format('d \d\e F, Y') }}</time>
                 <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                <span>Lectura de 5 min</span>
+                <span>Lectura de {{ $post->reading_time }} min</span>
             </div>
         </div>
     </div>
@@ -61,7 +79,7 @@
 @if($post->image)
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
     <div class="aspect-[21/9] rounded-[2rem] overflow-hidden shadow-2xl shadow-primary/5 border border-border-light relative">
-        <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+        <img src="{{ $post->image }}" alt="{{ $post->title }}" loading="lazy" class="w-full h-full object-cover">
     </div>
 </div>
 @endif

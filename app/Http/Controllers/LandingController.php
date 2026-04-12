@@ -8,7 +8,11 @@ class LandingController extends Controller
 {
     public function home()
     {
-        return view('marketing.home');
+        $testimonials = \App\Models\Testimonial::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('marketing.home', compact('testimonials'));
     }
 
     public function features()
@@ -18,7 +22,8 @@ class LandingController extends Controller
 
     public function blogIndex()
     {
-        $posts = \App\Models\Post::where('is_published', true)
+        $posts = \App\Models\Post::with('category')
+                                 ->where('is_published', true)
                                  ->latest('published_at')
                                  ->paginate(9);
         return view('marketing.blog.index', compact('posts'));
@@ -26,7 +31,8 @@ class LandingController extends Controller
 
     public function blogShow($slug)
     {
-        $post = \App\Models\Post::where('slug', $slug)
+        $post = \App\Models\Post::with('category')
+                                ->where('slug', $slug)
                                 ->where('is_published', true)
                                 ->firstOrFail();
         return view('marketing.blog.show', compact('post'));
@@ -71,8 +77,21 @@ class LandingController extends Controller
             'units.in'         => 'Seleccioná una opción válida.',
         ]);
 
-        // TODO: Store in database or send email notification
-        // For now, flash success and redirect
+        \App\Models\Lead::create([
+            'name'             => $validated['name'],
+            'email'            => $validated['email'],
+            'phone'            => $validated['phone'],
+            'company'          => $validated['company'],
+            'units'            => $validated['units'],
+            'message'          => $validated['message'] ?? null,
+            'source'           => 'demo_form',
+            'status'           => 'new',
+            'utm_source'       => $request->input('utm_source') ?: session('utm_source'),
+            'utm_medium'       => $request->input('utm_medium') ?: session('utm_medium'),
+            'utm_campaign'     => $request->input('utm_campaign') ?: session('utm_campaign'),
+            'utm_content'      => $request->input('utm_content') ?: session('utm_content'),
+            'first_contact_at' => now(),
+        ]);
 
         return redirect()->route('demo')->with('success', '¡Gracias! Tu solicitud de demo fue enviada correctamente. Nos pondremos en contacto en menos de 24hs.');
     }
@@ -92,7 +111,19 @@ class LandingController extends Controller
             'message.required' => 'El mensaje es obligatorio.',
         ]);
 
-        // TODO: Store in database or send email notification
+        \App\Models\Lead::create([
+            'name'             => $validated['name'],
+            'email'            => $validated['email'],
+            'subject'          => $validated['subject'],
+            'message'          => $validated['message'],
+            'source'           => 'contact_form',
+            'status'           => 'new',
+            'utm_source'       => $request->input('utm_source') ?: session('utm_source'),
+            'utm_medium'       => $request->input('utm_medium') ?: session('utm_medium'),
+            'utm_campaign'     => $request->input('utm_campaign') ?: session('utm_campaign'),
+            'utm_content'      => $request->input('utm_content') ?: session('utm_content'),
+            'first_contact_at' => now(),
+        ]);
 
         return redirect()->route('contact')->with('success', '¡Mensaje enviado! Te responderemos lo antes posible.');
     }
@@ -106,8 +137,70 @@ class LandingController extends Controller
             'email.email'    => 'Ingresá un email válido.',
         ]);
 
-        // TODO: Add to newsletter list
+        \App\Models\NewsletterSubscriber::firstOrCreate(
+            ['email' => $validated['email']],
+            [
+                'status'        => 'active',
+                'source'        => $request->header('Referer', 'web'),
+                'subscribed_at' => now(),
+            ]
+        );
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => '¡Suscripción exitosa!']);
+        }
 
         return back()->with('success', '¡Suscripción exitosa! Te mantendremos informado.');
+    }
+
+    public function trialLanding()
+    {
+        return view('marketing.trial');
+    }
+
+    public function privacy()
+    {
+        return view('marketing.privacy');
+    }
+
+    public function terms()
+    {
+        return view('marketing.terms');
+    }
+
+    public function bioLinks()
+    {
+        $links = \App\Models\BioLink::active()->get();
+        return view('marketing.bio-links', compact('links'));
+    }
+
+    public function sitemap()
+    {
+        $posts = \App\Models\Post::where('is_published', true)->latest('published_at')->get();
+
+        $urls = collect([
+            ['loc' => route('home'),      'priority' => '1.0', 'changefreq' => 'weekly'],
+            ['loc' => route('features'),  'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('solutions'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('pricing'),   'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['loc' => route('demo'),      'priority' => '0.8', 'changefreq' => 'monthly'],
+            ['loc' => route('contact'),   'priority' => '0.7', 'changefreq' => 'monthly'],
+            ['loc' => route('trial'),     'priority' => '0.8', 'changefreq' => 'monthly'],
+            ['loc' => route('blog.index'),'priority' => '0.8', 'changefreq' => 'weekly'],
+            ['loc' => route('privacy'),   'priority' => '0.3', 'changefreq' => 'yearly'],
+            ['loc' => route('terms'),     'priority' => '0.3', 'changefreq' => 'yearly'],
+        ]);
+
+        foreach ($posts as $post) {
+            $urls->push([
+                'loc'        => route('blog.show', $post->slug),
+                'lastmod'    => $post->updated_at->toW3cString(),
+                'priority'   => '0.7',
+                'changefreq' => 'monthly',
+            ]);
+        }
+
+        return response()->view('marketing.sitemap', ['urls' => $urls])
+                         ->header('Content-Type', 'application/xml');
     }
 }

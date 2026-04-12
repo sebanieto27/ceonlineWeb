@@ -12,22 +12,18 @@ Route::get('/soluciones', [LandingController::class, 'solutions'])->name('soluti
 Route::get('/precios', [LandingController::class, 'pricing'])->name('pricing');
 Route::get('/demo', [LandingController::class, 'demo'])->name('demo');
 Route::get('/contacto', [LandingController::class, 'contact'])->name('contact');
+Route::get('/prueba-gratis', [LandingController::class, 'trialLanding'])->name('trial');
+Route::get('/privacidad', [LandingController::class, 'privacy'])->name('privacy');
+Route::get('/terminos', [LandingController::class, 'terms'])->name('terms');
+Route::get('/links', [LandingController::class, 'bioLinks'])->name('bio.links');
 
 // ── Form Submissions ──
 Route::post('/demo', [LandingController::class, 'submitDemo'])->name('demo.submit');
 Route::post('/contacto', [LandingController::class, 'submitContact'])->name('contact.submit');
 Route::post('/newsletter', [LandingController::class, 'subscribe'])->name('newsletter');
 
-// ── Admin Panel ──
-Route::prefix('admin')->name('admin.')->group(function () {
-    // Auth Routes
-    Route::get('/login', [\App\Http\Controllers\Auth\AdminAuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [\App\Http\Controllers\Auth\AdminAuthController::class, 'login'])->name('login.submit');
-    Route::post('/logout', [\App\Http\Controllers\Auth\AdminAuthController::class, 'logout'])->name('logout');
+// ── SEO ──
+Route::get('/sitemap.xml', [LandingController::class, 'sitemap'])->name('sitemap');
 
-    // Protected Routes
-    Route::middleware('auth')->group(function () {
-        Route::get('/', function () { return redirect()->route('admin.posts.index'); })->name('dashboard');
-        Route::resource('posts', \App\Http\Controllers\PostController::class);
-    });
-});
+// ── Admin Panel ──
+// Migrado a Filament → /admin (panel automático)

@@ -30,7 +30,7 @@
             <article class="group flex flex-col hover:transform hover:-translate-y-2 transition-all duration-500">
                 @if($post->image)
                 <a href="{{ route('blog.show', $post->slug) }}" class="block aspect-video bg-gray-100 overflow-hidden rounded-2xl mb-8 shadow-sm">
-                    <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="{{ $post->image }}" alt="{{ $post->title }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </a>
                 @else
                 <div class="aspect-video bg-primary/5 rounded-2xl mb-8 flex items-center justify-center">
@@ -40,9 +40,11 @@
                 
                 <div class="flex-1 flex flex-col">
                     <div class="flex items-center gap-4 mb-4 text-[10px] font-black uppercase tracking-widest text-primary">
-                        <time datetime="{{ $post->published_at->toDateString() }}">{{ $post->published_at->format('d M, Y') }}</time>
+                        <time datetime="{{ ($post->published_at ?? $post->created_at)->toDateString() }}">{{ ($post->published_at ?? $post->created_at)->format('d M, Y') }}</time>
                         <span class="w-1 h-1 bg-primary rounded-full"></span>
-                        <span>Gestión Eficiente</span>
+                        <span>{{ $post->category?->name ?? 'Blog' }}</span>
+                        <span class="w-1 h-1 bg-primary rounded-full"></span>
+                        <span>{{ $post->reading_time }} min</span>
                     </div>
                     
                     <a href="{{ route('blog.show', $post->slug) }}" class="block mb-4">

@@ -9,24 +9,27 @@
                 </div>
 
                 <h1 class="text-[2.75rem] sm:text-6xl lg:text-8xl font-black text-text-primary leading-[1.05] tracking-tight mb-8 animate-fade-in-up">
-                    El cerebro colectivo de tu 
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">consorcio</span>
+                    Cerrá el mes en 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">horas, no en días</span>
                 </h1>
                 
                 <p class="text-xl sm:text-2xl text-text-secondary leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8 font-medium animate-fade-in-up delay-200">
-                    Reimagina los límites de lo posible con la IA, automatiza flujos financieros y conecta a tus residentes en una sola plataforma segura.
+                    El sistema de gestión de consorcios más completo de Argentina. Automatizá liquidaciones, dale transparencia a tus propietarios y gestioná toda tu cartera desde un solo lugar.
                 </p>
 
-                <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0 animate-fade-in-up delay-300">
-                    <input type="email" placeholder="Dirección de correo electrónico" class="w-full px-5 py-4 border border-border rounded-lg text-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-text-primary placeholder-text-tertiary">
-                    <button type="submit" class="btn-primary !py-4 !px-8 !text-lg !rounded-lg flex-shrink-0 shadow-lg shadow-primary/30">
-                        REGISTRARSE
-                    </button>
-                </form>
+                <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0 animate-fade-in-up delay-300">
+                    <a href="{{ route('demo') }}" class="btn-primary !py-4 !px-8 !text-lg !rounded-lg flex-shrink-0 shadow-lg shadow-primary/30 text-center">
+                        PROBALO 30 DÍAS GRATIS
+                    </a>
+                    <a href="{{ route('features') }}" class="px-8 py-4 border-2 border-border text-text-primary font-black rounded-lg text-lg hover:bg-primary/5 transition-all text-center">
+                        VER CARACTERÍSTICAS
+                    </a>
+                </div>
 
-                <div class="mt-4 text-[15px] font-medium text-text-secondary flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start animate-fade-in-up delay-400">
-                    <span>Gratis de por vida</span>
-                    <span>Sin tarjeta de crédito</span>
+                <div class="mt-6 text-[15px] font-medium text-text-secondary flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start animate-fade-in-up delay-400">
+                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Sin tarjeta de crédito</span>
+                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Migración sin cargo</span>
+                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Soporte VIP incluido</span>
                 </div>
             </div>
 
@@ -34,12 +37,13 @@
             <div class="relative w-full flex items-center justify-center animate-slide-in-right delay-200">
                 <div class="relative w-full max-w-lg mx-auto overflow-hidden rounded-2xl shadow-2xl shadow-primary/10 border border-border-light bg-surface relative z-10 transition-transform duration-500 hover:scale-[1.02]">
                     <video 
-                        autoplay 
                         loop 
                         muted 
                         playsinline 
+                        preload="none"
                         class="w-full h-auto scale-[1.05]"
-                        src="{{ asset('videos/placeholders/hero.webm') }}">
+                        x-data x-intersect.once="$el.src = $el.dataset.src; $el.play()"
+                        data-src="{{ asset('videos/placeholders/hero.webm') }}">
                     </video>
                 </div>
                 {{-- Decorative blobs --}}
