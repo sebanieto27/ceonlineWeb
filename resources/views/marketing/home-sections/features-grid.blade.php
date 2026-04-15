@@ -3,7 +3,7 @@
     <div class="absolute inset-0 bg-texture-dots pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-16">
-            <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark rounded-full text-sm font-medium mb-6 animate-fade-in">
+            <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark-dark rounded-full text-sm font-medium mb-6 animate-fade-in">
                 Características
             </span>
             <h2 class="text-4xl lg:text-5xl font-extrabold text-text-primary leading-tight mb-6">

@@ -4,7 +4,7 @@
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {{-- Left: Text & CTA --}}
             <div class="text-center lg:text-left z-10">
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest mb-6 animate-fade-in">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark rounded-full text-xs font-black uppercase tracking-widest mb-6 animate-fade-in">
                     Plataforma #1 en gestión de consorcios
                 </div>
 

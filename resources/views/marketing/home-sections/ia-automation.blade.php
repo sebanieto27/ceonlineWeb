@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div class="lg:order-2 lg:pl-12 relative z-10">
-                <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark rounded-full text-xs font-black uppercase tracking-widest mb-6 animate-fade-in">
+                <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark-dark rounded-full text-xs font-black uppercase tracking-widest mb-6 animate-fade-in">
                     Inteligencia Artificial
                 </span>
                 <h2 class="text-3xl sm:text-4xl lg:text-7xl font-black text-text-primary leading-[1.05] tracking-tight mb-8 animate-fade-in-up">

@@ -6,7 +6,7 @@
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             {{-- Left: Text --}}
             <div>
-                <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark rounded-full text-xs font-black mb-6 animate-fade-in uppercase tracking-[0.2em]">
+                <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark-dark rounded-full text-xs font-black mb-6 animate-fade-in uppercase tracking-[0.2em]">
                     Eficiencia Operativa
                 </span>
                 <h2 class="text-3xl sm:text-4xl lg:text-7xl font-black text-text-primary leading-[1.05] tracking-tight mb-8 animate-fade-in-up">

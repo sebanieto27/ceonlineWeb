@@ -187,6 +187,7 @@ class LandingController extends Controller
             ['loc' => route('contact'),   'priority' => '0.7', 'changefreq' => 'monthly'],
             ['loc' => route('trial'),     'priority' => '0.8', 'changefreq' => 'monthly'],
             ['loc' => route('blog.index'),'priority' => '0.8', 'changefreq' => 'weekly'],
+            ['loc' => route('bio.links'), 'priority' => '0.5', 'changefreq' => 'weekly'],
             ['loc' => route('privacy'),   'priority' => '0.3', 'changefreq' => 'yearly'],
             ['loc' => route('terms'),     'priority' => '0.3', 'changefreq' => 'yearly'],
         ]);

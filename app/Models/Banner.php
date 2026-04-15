@@ -42,12 +42,15 @@ class Banner extends Model
             });
     }
 
-    public function scopeForPage(Builder $query, string $routeName): Builder
+    public function scopeForPage(Builder $query, ?string $routeName): Builder
     {
         return $query->where(function ($q) use ($routeName) {
             $q->whereNull('pages')
-              ->orWhereJsonContains('pages', $routeName)
               ->orWhereJsonContains('pages', '*');
+
+            if ($routeName) {
+                $q->orWhereJsonContains('pages', $routeName);
+            }
         });
     }
 }

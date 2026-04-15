@@ -9,14 +9,6 @@
 
     {{-- Content --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mt-12 md:mt-24">
-        
-        {{-- Pill Menu (Slack Style) --}}
-        <div class="inline-flex flex-wrap justify-center gap-2 mb-12 p-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in text-white">
-            <span class="px-5 py-2 text-xs font-bold uppercase tracking-widest bg-white/25 rounded-full shadow-sm">Conocimiento</span>
-            <span class="px-5 py-2 text-xs font-bold uppercase tracking-widest hover:bg-white/15 rounded-full transition-all cursor-pointer">Personas</span>
-            <span class="px-5 py-2 text-xs font-bold uppercase tracking-widest hover:bg-white/15 rounded-full transition-all cursor-pointer">Proceso</span>
-            <span class="px-5 py-2 text-xs font-bold uppercase tracking-widest hover:bg-white/15 rounded-full transition-all cursor-pointer">Plataforma</span>
-        </div>
 
         {{-- Mission Title --}}
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.1] tracking-tight mb-20 max-w-4xl mx-auto animate-fade-in-up uppercase">

@@ -12,7 +12,7 @@
 }" x-show="testimonials.length > 0">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-16 lg:mb-24">
-            <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest animate-fade-in">
+            <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary-dark rounded-full text-xs font-black uppercase tracking-widest animate-fade-in">
                 Casos de Éxito
             </span>
             <h2 class="text-3xl lg:text-7xl font-black text-text-primary mt-8 leading-[1.05] tracking-tight">
