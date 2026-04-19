@@ -41,6 +41,11 @@ class TestimonialResource extends Resource
                     ->label('Iniciales')
                     ->required()
                     ->maxLength(5),
+                Forms\Components\FileUpload::make('photo')
+                    ->label('Foto')
+                    ->image()
+                    ->directory('testimonials')
+                    ->nullable(),
                 Forms\Components\Textarea::make('quote')
                     ->label('Testimonio')
                     ->required()

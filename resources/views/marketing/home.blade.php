@@ -5,28 +5,31 @@
 
 @section('content')
 
-{{-- Hero --}}
+{{-- 1. Hero --}}
 @include('marketing.components.hero')
 
-{{-- Social Proof / Trust Logos --}}
+{{-- 2. Pain Points — Emotional identification --}}
+@include('marketing.home-sections.pain-points')
+
+{{-- 3. Product Tabs — Interactive showcase --}}
+@include('marketing.home-sections.product-tabs')
+
+{{-- 4. Four Pillars — Deep-dive features --}}
+@include('marketing.home-sections.four-pillars')
+
+{{-- 5. AI Spotlight — Dark impact section --}}
+@include('marketing.home-sections.ai-spotlight')
+
+{{-- 6. Social Proof — Stats with counters --}}
 @include('marketing.components.social-proof')
 
-{{-- Features Grid (now zig-zag 1) --}}
-@include('marketing.home-sections.features-grid')
-
-{{-- IA & Automation Section --}}
-@include('marketing.home-sections.ia-automation')
-
-{{-- Solutions by Sector --}}
-@include('marketing.home-sections.solutions')
-
-{{-- Time Savings Section --}}
-@include('marketing.home-sections.time-savings')
-
-{{-- Testimonials --}}
+{{-- 7. Testimonials --}}
 @include('marketing.components.testimonial')
 
-{{-- Mission & CTA Unificado (Slack Style) --}}
-@include('marketing.components.mission-cta')
+{{-- 8. Blog Resources --}}
+@include('marketing.home-sections.blog-resources')
+
+{{-- 9. Final CTA --}}
+@include('marketing.components.final-cta')
 
 @endsection

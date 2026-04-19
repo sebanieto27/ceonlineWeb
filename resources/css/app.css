@@ -7,7 +7,7 @@
 @source '../**/*.js';
 
 /* ── CEO Online Design Tokens ── */
-@theme {
+@theme extend {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
     --color-primary: #0B75B2;
@@ -251,7 +251,59 @@ body {
     overflow: visible !important; /* Allow the SVG divider to show */
 }
 
-/* ── Scroll reveal ── */
-[x-intersect] {
-    opacity: 0;
+/* ── CTA Pulse Animation ── */
+@keyframes cta-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(11, 117, 178, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(11, 117, 178, 0); }
 }
+
+@keyframes cta-pulse-white {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+}
+
+.animate-cta-pulse {
+    animation: cta-pulse 2.5s ease-in-out infinite;
+}
+
+.animate-cta-pulse-white {
+    animation: cta-pulse-white 2.5s ease-in-out infinite;
+}
+
+/* ── Staggered Card Reveal ── */
+@keyframes card-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-card-reveal {
+    animation: card-reveal 0.5s ease-out both;
+}
+
+/* ── Section Reveal ── */
+@keyframes section-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-section-reveal {
+    animation: section-reveal 0.7s ease-out both;
+}
+
+/* ── Scroll reveal ── */
+/* Elements that need to animate in should use 'opacity-0' class
+   initially and switch to animation class via Alpine :class binding.
+   Do NOT use [x-intersect] { opacity: 0 } — it hides containers
+   that use x-intersect as a trigger (counters, lazy videos, etc.) */
