@@ -235,20 +235,6 @@
     </div>
 </section>
 
-{{-- Technical Stack / Modern Platform --}}
-<section class="py-24 lg:py-32 bg-bg border-t border-border-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h3 class="text-2xl lg:text-3xl font-black text-text-primary mb-12">Construido con tecnología líder mundial</h3>
-        <div class="flex flex-wrap justify-center gap-8 lg:gap-16 items-center opacity-60">
-            <span class="text-2xl lg:text-3xl font-black tracking-tighter">LARAVEL 11</span>
-            <span class="text-2xl lg:text-3xl font-black tracking-tighter">TAILWIND CSS</span>
-            <span class="text-2xl lg:text-3xl font-black tracking-tighter">MYSQL 8.0</span>
-            <span class="text-2xl lg:text-3xl font-black tracking-tighter">LARAVEL REVERB</span>
-            <span class="text-2xl lg:text-3xl font-black tracking-tighter">OPENAI</span>
-        </div>
-    </div>
-</section>
-
 {{-- Mission & CTA Unificado (Slack Style) --}}
 @include('marketing.components.mission-cta')
 

@@ -25,7 +25,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('admincrm')
             ->login()
             ->brandName('CEOnline Marketing')
             ->colors([

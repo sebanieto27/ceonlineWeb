@@ -4,7 +4,7 @@
 @section('description', 'La página que buscás no existe o fue movida.')
 
 @section('content')
-<section class="py-32 lg:py-48 bg-surface relative overflow-hidden">
+<section class="pt-40 pb-32 lg:pt-56 lg:pb-48 bg-surface relative overflow-hidden">
     <div class="absolute inset-0 bg-texture-dots opacity-50 pointer-events-none"></div>
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
