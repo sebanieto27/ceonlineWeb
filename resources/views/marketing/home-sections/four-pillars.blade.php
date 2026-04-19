@@ -4,7 +4,9 @@
     {{-- PILAR 1: LIQUIDACIONES --}}
     <div class="py-20 lg:py-28 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+                 x-data="{ shown: false }" x-intersect.once="shown = true"
+                 :class="shown ? 'animate-section-reveal' : 'opacity-0'">
                 {{-- Text --}}
                 <div>
                     <span class="inline-block px-4 py-1.5 bg-primary/10 text-primary font-black text-xs uppercase tracking-[0.2em] rounded-full mb-6">Liquidaciones</span>
@@ -31,7 +33,7 @@
                     </div>
                 </div>
                 {{-- #PH-07 — Reemplazar con screenshot del listado de expensas generadas --}}
-                <div class="relative">
+                <div class="relative pillar-mockup">
                     @include('marketing.components.ui-mockup', ['type' => 'table', 'label' => 'CEO Online — Liquidaciones'])
                 </div>
             </div>
@@ -41,9 +43,11 @@
     {{-- PILAR 2: PROPIETARIOS --}}
     <div class="py-20 lg:py-28 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+                 x-data="{ shown: false }" x-intersect.once="shown = true"
+                 :class="shown ? 'animate-section-reveal' : 'opacity-0'">
                 {{-- #PH-08 — Reemplazar con screenshot del portal propietario mobile --}}
-                <div class="relative lg:order-1">
+                <div class="relative lg:order-1 pillar-mockup">
                     @include('marketing.components.ui-mockup', ['type' => 'mobile', 'label' => 'Portal Propietario'])
                 </div>
                 {{-- Text --}}
@@ -78,7 +82,9 @@
     {{-- PILAR 3: AUTOMATIZACIÓN --}}
     <div class="py-20 lg:py-28 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+                 x-data="{ shown: false }" x-intersect.once="shown = true"
+                 :class="shown ? 'animate-section-reveal' : 'opacity-0'">
                 {{-- Text --}}
                 <div>
                     <span class="inline-block px-4 py-1.5 bg-purple-100 text-purple-600 font-black text-xs uppercase tracking-[0.2em] rounded-full mb-6">Automatización</span>
@@ -105,7 +111,7 @@
                     </div>
                 </div>
                 {{-- #PH-09 — Reemplazar con screenshot de IA extrayendo datos de factura --}}
-                <div class="relative">
+                <div class="relative pillar-mockup">
                     @include('marketing.components.ui-mockup', ['type' => 'invoice', 'label' => 'CEO Online — IA Facturas'])
                 </div>
             </div>
@@ -115,9 +121,11 @@
     {{-- PILAR 4: GESTIÓN MULTI-CONSORCIO --}}
     <div class="py-20 lg:py-28 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+                 x-data="{ shown: false }" x-intersect.once="shown = true"
+                 :class="shown ? 'animate-section-reveal' : 'opacity-0'">
                 {{-- #PH-10 — Reemplazar con screenshot de vista multi-consorcio --}}
-                <div class="relative lg:order-1">
+                <div class="relative lg:order-1 pillar-mockup">
                     @include('marketing.components.ui-mockup', ['type' => 'dashboard', 'label' => 'CEO Online — Multi-Consorcio'])
                 </div>
                 {{-- Text --}}
@@ -150,14 +158,23 @@
     </div>
 
     {{-- Bottom CTA Strip --}}
-    <div class="py-10 bg-slate-100 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="{{ route('demo') }}" class="px-8 py-4 bg-primary text-white font-black rounded-lg text-sm uppercase tracking-widest hover:bg-primary-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/30 animate-cta-pulse">
-                Solicitar demo
-            </a>
-            <a href="{{ route('contact') }}" class="px-8 py-4 border-2 border-gray-200 text-text-primary font-black rounded-lg text-sm uppercase tracking-widest hover:border-primary hover:bg-primary/5 transition-all">
-                Contactanos
-            </a>
+    <div class="py-16 lg:py-20 bg-gradient-to-b from-slate-100 to-slate-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-text-primary leading-[1.08] tracking-tight mb-4">
+                Simplificá tu operación en menos de una semana
+            </h3>
+            <p class="text-text-secondary font-medium text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+                Te ayudamos a migrar tus datos, configurar tu cuenta y capacitar a tu equipo. Sin costo adicional.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="{{ route('demo') }}" class="px-8 py-4 bg-primary text-white font-black rounded-lg text-sm uppercase tracking-widest hover:bg-primary-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/30 animate-cta-pulse">
+                    Solicitar demo gratuita
+                </a>
+                <a href="{{ route('contact') }}" class="px-8 py-4 border-2 border-slate-300 text-text-primary font-black rounded-lg text-sm uppercase tracking-widest hover:border-primary hover:bg-primary/5 transition-all">
+                    Hablá con un asesor
+                </a>
+            </div>
+            <p class="mt-5 text-text-tertiary text-sm font-medium">Sin compromiso · Setup en 48hs · Migración sin cargo</p>
         </div>
     </div>
 </section>

@@ -302,6 +302,20 @@ body {
     animation: section-reveal 0.7s ease-out both;
 }
 
+/* ── Smooth scroll ── */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ── Pillar mockup hover lift ── */
+.pillar-mockup {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+.pillar-mockup:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
 /* ── Scroll reveal ── */
 /* Elements that need to animate in should use 'opacity-0' class
    initially and switch to animation class via Alpine :class binding.
