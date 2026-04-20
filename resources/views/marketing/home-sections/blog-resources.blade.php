@@ -22,7 +22,7 @@
                 {{-- Image or Gradient Fallback --}}
                 <div class="aspect-[16/9] overflow-hidden relative">
                     @if($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                     @else
                     @php
                         $gradients = [

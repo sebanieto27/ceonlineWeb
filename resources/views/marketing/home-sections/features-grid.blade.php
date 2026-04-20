@@ -10,7 +10,7 @@
                 Todo lo que necesitás para gestionar tu cartera
             </h2>
             <p class="text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto font-medium">
-                Somos el único sistema que combina <span class="text-text-primary font-bold underline decoration-primary decoration-4">Software de Gestión con Imprenta Propia</span>, eliminando la fricción entre la liquidación y la entrega al propietario.
+                Somos el único sistema que combina <span class="text-text-primary font-bold underline decoration-primary decoration-4">gestión integral con inteligencia artificial</span>, eliminando la fricción entre la liquidación y la entrega al propietario.
             </p>
         </div>
 

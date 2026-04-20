@@ -11,7 +11,10 @@
             : 'max-w-none rounded-none shadow-none border-b border-gray-200 px-5 md:px-8 py-4'">
         {{-- Logo --}}
         <a href="{{ route('home') }}" class="flex items-center shrink-0 mr-4 lg:mr-8 xl:mr-12">
-            <img src="{{ asset('logo/logo-ceonline.png') }}" alt="CEO Online Logo" class="h-8 md:h-9 w-auto">
+            <picture>
+                <source srcset="{{ asset('logo/logo-ceonline.webp') }}" type="image/webp">
+                <img src="{{ asset('logo/logo-ceonline.png') }}" alt="CEO Online Logo" class="h-8 md:h-9 w-auto" width="197" height="80" fetchpriority="high">
+            </picture>
         </a>
 
         {{-- Desktop Menu --}}
@@ -103,7 +106,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('contact') }}" class="px-3 py-2 text-[15px] font-semibold text-gray-800 hover:text-primary rounded-full transition-colors">Empresa</a>
+            <a href="{{ route('about') }}" class="px-3 py-2 text-[15px] font-semibold text-gray-800 hover:text-primary rounded-full transition-colors">Empresa</a>
 
             {{-- Recursos Dropdown --}}
             <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
@@ -119,12 +122,11 @@
                         Blog y Novedades
                     </a>
                     <a href="{{ route('contact') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-xl transition-colors">
-                        Centro de Ayuda
+                        Contacto
                     </a>
                 </div>
             </div>
 
-            <a href="{{ route('pricing') }}" class="px-3 py-2 text-[15px] font-semibold text-gray-800 hover:text-primary rounded-full transition-colors">Precios</a>
         </div>
 
         {{-- Spacer to push right elements --}}
@@ -132,9 +134,8 @@
 
         {{-- Desktop CTAs --}}
         <div class="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0 relative z-50">
-            <a href="/login" class="text-[14px] font-bold text-gray-800 hover:text-primary transition-colors px-2">Iniciar sesión</a>
             <a href="{{ route('demo') }}" class="px-5 py-2.5 text-[13px] font-bold text-primary border border-gray-200 rounded-full hover:border-primary hover:bg-primary/5 transition-all uppercase tracking-widest whitespace-nowrap hidden xl:block">Solicitar Demo</a>
-            <a href="{{ route('demo') }}" class="px-6 py-2.5 text-[13px] font-bold text-white bg-primary rounded-full hover:bg-primary-dark hover:scale-105 transition-all duration-300 uppercase tracking-widest whitespace-nowrap shadow-[0_4px_14px_rgba(23,157,217,0.39)]">Comenzar</a>
+            <a href="{{ route('demo') }}" title="Iniciar sesión o crear cuenta" class="px-6 py-2.5 text-[13px] font-bold text-white bg-primary rounded-full hover:bg-primary-dark hover:scale-105 transition-all duration-300 uppercase tracking-widest whitespace-nowrap shadow-[0_4px_14px_rgba(23,157,217,0.39)]">Comenzar</a>
         </div>
 
         {{-- Mobile Hamburger --}}
@@ -159,15 +160,14 @@
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Navegación</p>
                 <a href="{{ route('features') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Funciones</a>
                 <a href="{{ route('solutions') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Soluciones</a>
-                <a href="{{ route('contact') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Empresa</a>
-                <a href="{{ route('blog.index') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Recursos</a>
-                <a href="{{ route('pricing') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Precios</a>
+                <a href="{{ route('about') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Empresa</a>
+                <a href="{{ route('blog.index') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Blog</a>
+                <a href="{{ route('contact') }}" @click="close" class="flex items-center justify-between py-3 text-lg font-black text-gray-900 border-b border-gray-100 uppercase tracking-tighter">Contacto</a>
             </div>
 
             <div class="pt-2 space-y-3 flex flex-col">
-                <a href="{{ route('demo') }}" class="px-5 py-3.5 text-sm font-bold text-white bg-primary rounded-xl text-center uppercase tracking-wide shadow-sm hover:bg-primary-dark transition-colors">Comenzar</a>
+                <a href="{{ route('demo') }}" title="Iniciar sesión o crear cuenta" class="px-5 py-3.5 text-sm font-bold text-white bg-primary rounded-xl text-center uppercase tracking-wide shadow-sm hover:bg-primary-dark transition-colors">Comenzar</a>
                 <a href="{{ route('demo') }}" class="px-5 py-3.5 text-sm font-bold text-primary border-2 border-primary/20 rounded-xl text-center uppercase tracking-wide hover:border-primary hover:bg-primary/5 transition-colors">Solicitar Demo</a>
-                <a href="/login" class="py-3 text-[15px] font-bold text-gray-600 text-center uppercase tracking-widest mt-2 hover:text-primary transition-colors">Iniciar sesión</a>
             </div>
         </div>
     </div>

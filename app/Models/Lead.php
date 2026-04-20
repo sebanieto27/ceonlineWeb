@@ -17,6 +17,7 @@ class Lead extends Model
         'phone',
         'company',
         'units',
+        'owners_count',
         'source',
         'utm_source',
         'utm_medium',

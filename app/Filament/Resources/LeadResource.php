@@ -58,6 +58,14 @@ class LeadResource extends Resource
                                 '101-500' => '101 a 500',
                                 '500+' => 'Más de 500',
                             ]),
+                        Forms\Components\Select::make('owners_count')
+                            ->label('Propietarios que administra')
+                            ->options([
+                                '1-20' => '1 a 20',
+                                '21-50' => '21 a 50',
+                                '51-100' => '51 a 100',
+                                '100+' => 'Más de 100',
+                            ]),
                         Forms\Components\TextInput::make('subject')
                             ->label('Asunto'),
                     ]),
@@ -140,6 +148,9 @@ class LeadResource extends Resource
                     ->label('Empresa')
                     ->searchable()
                     ->toggleable(),
+                Tables\Columns\TextColumn::make('owners_count')
+                    ->label('Propietarios')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email')
                     ->searchable()

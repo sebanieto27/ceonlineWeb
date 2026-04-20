@@ -22,11 +22,16 @@ class LandingController extends Controller
 
     public function blogIndex()
     {
-        $posts = \App\Models\Post::with('category')
-                                 ->where('is_published', true)
-                                 ->latest('published_at')
-                                 ->paginate(9);
-        return view('marketing.blog.index', compact('posts'));
+        $query = \App\Models\Post::with('category')
+                                 ->where('is_published', true);
+
+        if (request('category')) {
+            $query->whereHas('category', fn($q) => $q->where('slug', request('category')));
+        }
+
+        $posts = $query->latest('published_at')->paginate(9);
+        $categories = \App\Models\Category::orderBy('name')->get();
+        return view('marketing.blog.index', compact('posts', 'categories'));
     }
 
     public function blogShow($slug)
@@ -35,7 +40,16 @@ class LandingController extends Controller
                                 ->where('slug', $slug)
                                 ->where('is_published', true)
                                 ->firstOrFail();
-        return view('marketing.blog.show', compact('post'));
+
+        $relatedPosts = \App\Models\Post::with('category')
+                                        ->where('is_published', true)
+                                        ->where('id', '!=', $post->id)
+                                        ->when($post->category_id, fn($q) => $q->where('category_id', $post->category_id))
+                                        ->latest('published_at')
+                                        ->limit(3)
+                                        ->get();
+
+        return view('marketing.blog.show', compact('post', 'relatedPosts'));
     }
 
     public function solutions()
@@ -43,9 +57,9 @@ class LandingController extends Controller
         return view('marketing.solutions');
     }
 
-    public function pricing()
+    public function about()
     {
-        return view('marketing.pricing');
+        return view('marketing.about');
     }
 
     public function demo()
@@ -65,16 +79,19 @@ class LandingController extends Controller
             'email'   => 'required|email|max:255',
             'phone'   => 'required|string|max:50',
             'company' => 'required|string|max:255',
-            'units'   => 'required|in:1-50,51-100,101-500,500+',
-            'message' => 'nullable|string|max:2000',
+            'units'        => 'required|in:1-50,51-100,101-500,500+',
+            'owners_count' => 'required|in:1-20,21-50,51-100,100+',
+            'message'      => 'nullable|string|max:2000',
         ], [
-            'name.required'    => 'El nombre es obligatorio.',
-            'email.required'   => 'El email es obligatorio.',
-            'email.email'      => 'Ingresá un email válido.',
-            'phone.required'   => 'El teléfono es obligatorio.',
-            'company.required' => 'El nombre de la administración es obligatorio.',
-            'units.required'   => 'Seleccioná la cantidad de unidades.',
-            'units.in'         => 'Seleccioná una opción válida.',
+            'name.required'         => 'El nombre es obligatorio.',
+            'email.required'        => 'El email es obligatorio.',
+            'email.email'           => 'Ingresá un email válido.',
+            'phone.required'        => 'El teléfono es obligatorio.',
+            'company.required'      => 'El nombre de la administración es obligatorio.',
+            'units.required'        => 'Seleccioná la cantidad de unidades.',
+            'units.in'              => 'Seleccioná una opción válida.',
+            'owners_count.required' => 'Seleccioná la cantidad de propietarios.',
+            'owners_count.in'       => 'Seleccioná una opción válida.',
         ]);
 
         \App\Models\Lead::create([
@@ -83,6 +100,7 @@ class LandingController extends Controller
             'phone'            => $validated['phone'],
             'company'          => $validated['company'],
             'units'            => $validated['units'],
+            'owners_count'     => $validated['owners_count'],
             'message'          => $validated['message'] ?? null,
             'source'           => 'demo_form',
             'status'           => 'new',
@@ -101,13 +119,14 @@ class LandingController extends Controller
         $validated = $request->validate([
             'name'    => 'required|string|max:255',
             'email'   => 'required|email|max:255',
-            'subject' => 'required|in:ventas,soporte,partnership,otro',
-            'message' => 'required|string|max:5000',
+            'subject'      => 'required|string|max:255',
+            'owners_count' => 'nullable|in:1-20,21-50,51-100,100+',
+            'message'      => 'required|string|max:5000',
         ], [
             'name.required'    => 'El nombre es obligatorio.',
             'email.required'   => 'El email es obligatorio.',
             'email.email'      => 'Ingresá un email válido.',
-            'subject.required' => 'Seleccioná un asunto.',
+            'subject.required' => 'El asunto es obligatorio.',
             'message.required' => 'El mensaje es obligatorio.',
         ]);
 
@@ -115,6 +134,7 @@ class LandingController extends Controller
             'name'             => $validated['name'],
             'email'            => $validated['email'],
             'subject'          => $validated['subject'],
+            'owners_count'     => $validated['owners_count'] ?? null,
             'message'          => $validated['message'],
             'source'           => 'contact_form',
             'status'           => 'new',
@@ -182,7 +202,6 @@ class LandingController extends Controller
             ['loc' => route('home'),      'priority' => '1.0', 'changefreq' => 'weekly'],
             ['loc' => route('features'),  'priority' => '0.9', 'changefreq' => 'monthly'],
             ['loc' => route('solutions'), 'priority' => '0.9', 'changefreq' => 'monthly'],
-            ['loc' => route('pricing'),   'priority' => '0.9', 'changefreq' => 'monthly'],
             ['loc' => route('demo'),      'priority' => '0.8', 'changefreq' => 'monthly'],
             ['loc' => route('contact'),   'priority' => '0.7', 'changefreq' => 'monthly'],
             ['loc' => route('trial'),     'priority' => '0.8', 'changefreq' => 'monthly'],

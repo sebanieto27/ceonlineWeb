@@ -9,7 +9,8 @@ Route::get('/caracteristicas', [LandingController::class, 'features'])->name('fe
 Route::get('/blog', [LandingController::class, 'blogIndex'])->name('blog.index');
 Route::get('/blog/{slug}', [LandingController::class, 'blogShow'])->name('blog.show');
 Route::get('/soluciones', [LandingController::class, 'solutions'])->name('solutions');
-Route::get('/precios', [LandingController::class, 'pricing'])->name('pricing');
+Route::get('/empresa', [LandingController::class, 'about'])->name('about');
+Route::redirect('/precios', '/demo');
 Route::get('/demo', [LandingController::class, 'demo'])->name('demo');
 Route::get('/contacto', [LandingController::class, 'contact'])->name('contact');
 Route::get('/prueba-gratis', [LandingController::class, 'trialLanding'])->name('trial');

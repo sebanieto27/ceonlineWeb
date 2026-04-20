@@ -5,10 +5,22 @@
 
 @section('content')
 
-<section class="pt-24 lg:pt-32 pb-24 bg-white">
+{{-- Hero --}}
+<section class="gradient-hero gradient-mesh py-20 lg:py-24 border-b border-border-light relative overflow-hidden">
+    <div class="absolute inset-0 bg-texture-dots opacity-30 pointer-events-none"></div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <nav class="flex items-center gap-2 text-sm text-text-secondary font-medium mb-8">
+            <a href="{{ route('home') }}" class="hover:text-primary transition-colors">Inicio</a>
+            <span class="text-border-light">/</span>
+            <span class="text-text-primary">Privacidad</span>
+        </nav>
+        <h1 class="text-4xl lg:text-5xl font-black text-text-primary tracking-tight">Política de Privacidad</h1>
+        <p class="text-text-secondary font-medium mt-4">Última actualización: {{ now()->format('d/m/Y') }}</p>
+    </div>
+</section>
+
+<section class="py-20 lg:py-28 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl lg:text-5xl font-black text-text-primary mb-8">Política de Privacidad</h1>
-        <p class="text-text-secondary font-medium mb-4">Última actualización: {{ now()->format('d/m/Y') }}</p>
 
         <div class="prose prose-lg prose-slate max-w-none prose-headings:font-black prose-headings:text-text-primary prose-p:text-text-secondary prose-p:font-medium">
 

@@ -103,10 +103,15 @@
     </div>
 </section>
 
-{{-- What you get --}}
-<section class="py-24 bg-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl lg:text-4xl font-black text-text-primary text-center mb-16">¿Qué incluye tu prueba gratuita?</h2>
+{{-- What you get — bg-white --}}
+<section class="py-20 lg:py-28 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
+         x-data="{ shown: false }" x-intersect.once="shown = true"
+         :class="shown ? 'animate-section-reveal' : 'opacity-0'">
+        <div class="text-center mb-14">
+            <span class="inline-block px-3 py-1 bg-primary/10 text-primary font-black text-xs uppercase tracking-[0.2em] rounded-full mb-4">Incluido</span>
+            <h2 class="text-3xl lg:text-4xl font-black text-text-primary tracking-tight">¿Qué incluye tu prueba gratuita?</h2>
+        </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @foreach([
                 ['🧾', 'Liquidaciones automáticas', 'Cerrá el mes en horas con cálculos inteligentes y distribución por coeficientes.'],
@@ -114,7 +119,7 @@
                 ['🤖', 'IA para Facturas', 'Sacale una foto a la factura y el sistema extrae montos, fechas y CUIT.'],
                 ['💬', 'Soporte en Tiempo Real', 'Chat integrado con nuestro equipo técnico mientras usás el sistema.'],
             ] as $item)
-            <div class="text-center">
+            <div class="bg-slate-50 rounded-2xl border border-border-light p-8 text-center hover:shadow-xl hover:border-primary/30 transition-all duration-500">
                 <div class="text-4xl mb-4">{{ $item[0] }}</div>
                 <h3 class="text-lg font-black text-text-primary mb-2">{{ $item[1] }}</h3>
                 <p class="text-text-secondary font-medium text-sm leading-relaxed">{{ $item[2] }}</p>
@@ -124,26 +129,25 @@
     </div>
 </section>
 
-{{-- Social proof --}}
-<section class="py-16 bg-bg border-y border-border-light">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+{{-- Social proof — DARK --}}
+<section class="py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-primary-dark to-slate-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-texture-dots opacity-10 pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+         x-data="{ shown: false }" x-intersect.once="shown = true"
+         :class="shown ? 'animate-section-reveal' : 'opacity-0'">
+        <h3 class="text-2xl lg:text-3xl font-black text-white text-center mb-14 tracking-tight">Números que hablan solos</h3>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div>
-                <p class="text-3xl font-black text-primary">200+</p>
-                <p class="text-text-secondary font-medium text-sm mt-1">Consorcios activos</p>
+            @foreach([
+                ['200+', 'Consorcios activos'],
+                ['42.000+', 'Propietarios conectados'],
+                ['-50%', 'Carga manual de datos'],
+                ['24hs', 'Tiempo de respuesta'],
+            ] as $stat)
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8">
+                <p class="text-3xl lg:text-4xl font-black text-white">{{ $stat[0] }}</p>
+                <p class="text-white/60 font-medium text-sm mt-2">{{ $stat[1] }}</p>
             </div>
-            <div>
-                <p class="text-3xl font-black text-primary">42.000+</p>
-                <p class="text-text-secondary font-medium text-sm mt-1">Propietarios conectados</p>
-            </div>
-            <div>
-                <p class="text-3xl font-black text-primary">-50%</p>
-                <p class="text-text-secondary font-medium text-sm mt-1">Carga manual de datos</p>
-            </div>
-            <div>
-                <p class="text-3xl font-black text-primary">24hs</p>
-                <p class="text-text-secondary font-medium text-sm mt-1">Tiempo de respuesta</p>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

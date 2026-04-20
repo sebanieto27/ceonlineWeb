@@ -1,182 +1,163 @@
-{{-- Pain Points — Emotional Identification Section --}}
-<section class="py-20 lg:py-28 bg-white" id="pain-points">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+{{-- Pain Points — Conversion-focused Diagnostic Section --}}
+<section class="py-20 lg:py-28 bg-slate-50 relative overflow-hidden" id="pain-points"
+         x-data="{ active: 0, shown: false }"
+         x-intersect.once="shown = true">
+    <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none"></div>
 
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {{-- Section Header --}}
-        <div class="text-center mb-14 lg:mb-20">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-text-primary leading-[1.08] tracking-tight animate-fade-in-up">
-                ¿Esto te resulta familiar?
+        <div class="text-center max-w-4xl mx-auto mb-12 lg:mb-16">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.18em] bg-danger/10 text-danger mb-5">
+                Diagnostico real de administracion
+            </span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-text-primary leading-[1.05] tracking-tight">
+                Si tu dia arranca apagando incendios, no es falta de esfuerzo: es falta de sistema.
             </h2>
+            <p class="mt-5 text-lg text-text-secondary font-medium leading-relaxed">
+                Estas fricciones operativas se repiten todos los meses y terminan impactando en tu tiempo, en tu equipo y en la percepcion de los propietarios.
+            </p>
         </div>
 
-        {{-- Pain Cards Grid --}}
-        <div class="grid sm:grid-cols-2 gap-6 lg:gap-8 mb-14 lg:mb-20"
-             x-data="{ shown: false, expanded: null }"
-             x-intersect.once="shown = true">
+        {{-- Interactive Diagnostic Layout --}}
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
+            {{-- Left: Tension and urgency --}}
+            <aside class="lg:col-span-4">
+                <div class="rounded-3xl border border-danger/20 bg-white p-7 lg:p-8 shadow-sm"
+                     :class="shown ? 'animate-section-reveal' : 'opacity-0'">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger/40"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-danger"></span>
+                        </span>
+                        <p class="text-xs font-black uppercase tracking-[0.16em] text-danger">Alerta de desgaste</p>
+                    </div>
 
-            {{-- Card 1: Cierre de mes --}}
-            <div class="group relative rounded-2xl border border-border-light bg-white transition-all duration-500 cursor-pointer overflow-hidden"
-                 :class="[shown ? 'animate-card-reveal' : 'opacity-0', expanded === 0 ? 'shadow-xl border-primary/30 ring-2 ring-primary/10' : 'hover:shadow-lg hover:border-slate-200']"
-                 @click="expanded = expanded === 0 ? null : 0"
-                 style="animation-delay: 0.1s">
-                <div class="p-8">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="w-12 h-12 rounded-xl bg-danger/10 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-danger" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                        </div>
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" :class="expanded === 0 ? 'bg-primary text-white rotate-45' : 'bg-slate-100 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary'">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-black text-text-primary mb-3 tracking-tight">El cierre de mes te consume días enteros</h3>
-                    <p class="text-text-secondary font-medium leading-relaxed">Calcular expensas, distribuir gastos, generar PDFs… y si hay un error, empezar de nuevo.</p>
-                </div>
-                {{-- Expandable Solution --}}
-                <div class="overflow-hidden transition-all duration-500 ease-out" :class="expanded === 0 ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'">
-                    <div class="px-8 pb-8 border-t border-border-light">
-                        <div class="pt-5 flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            </div>
-                            <div>
-                                <p class="font-bold text-text-primary text-sm mb-1">Con CEOnline:</p>
-                                <p class="text-text-secondary text-sm leading-relaxed">Liquidación automática con cálculo por coeficiente. De 3 días a 2 horas. Generación masiva de PDFs con un clic.</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 rounded-xl overflow-hidden border border-border-light">
-                            @include('marketing.components.ui-mockup', ['type' => 'table', 'label' => 'Liquidaciones — Cierre Abril 2026'])
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <p class="text-2xl lg:text-3xl font-black text-text-primary tracking-tight leading-tight mb-5">
+                        No es un "mes complicado".<br>
+                        Es un patron que te quita rentabilidad.
+                    </p>
 
-            {{-- Card 2: Propietarios --}}
-            <div class="group relative rounded-2xl border border-border-light bg-white transition-all duration-500 cursor-pointer overflow-hidden"
-                 :class="[shown ? 'animate-card-reveal' : 'opacity-0', expanded === 1 ? 'shadow-xl border-primary/30 ring-2 ring-primary/10' : 'hover:shadow-lg hover:border-slate-200']"
-                 @click="expanded = expanded === 1 ? null : 1"
-                 style="animation-delay: 0.2s">
-                <div class="p-8">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="w-12 h-12 rounded-xl bg-warning/10 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-                            </svg>
-                        </div>
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" :class="expanded === 1 ? 'bg-primary text-white rotate-45' : 'bg-slate-100 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary'">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-black text-text-primary mb-3 tracking-tight">Los propietarios llaman sin parar pidiendo información</h3>
-                    <p class="text-text-secondary font-medium leading-relaxed">Cuánto deben, cuándo vence, qué se arregló… las mismas preguntas una y otra vez.</p>
-                </div>
-                <div class="overflow-hidden transition-all duration-500 ease-out" :class="expanded === 1 ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'">
-                    <div class="px-8 pb-8 border-t border-border-light">
-                        <div class="pt-5 flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            </div>
-                            <div>
-                                <p class="font-bold text-text-primary text-sm mb-1">Con CEOnline:</p>
-                                <p class="text-text-secondary text-sm leading-relaxed">Portal 24/7 donde cada propietario consulta expensas, pagos y novedades desde su celular. Menos llamadas, más autonomía.</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 rounded-xl overflow-hidden border border-border-light">
-                            @include('marketing.components.ui-mockup', ['type' => 'mobile', 'label' => 'Portal Propietario'])
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <p class="text-text-secondary font-medium leading-relaxed mb-6">
+                        Cuanto mas se normaliza el caos, mas dificil es crecer sin perder calidad de atencion.
+                    </p>
 
-            {{-- Card 3: Facturas --}}
-            <div class="group relative rounded-2xl border border-border-light bg-white transition-all duration-500 cursor-pointer overflow-hidden"
-                 :class="[shown ? 'animate-card-reveal' : 'opacity-0', expanded === 2 ? 'shadow-xl border-primary/30 ring-2 ring-primary/10' : 'hover:shadow-lg hover:border-slate-200']"
-                 @click="expanded = expanded === 2 ? null : 2"
-                 style="animation-delay: 0.3s">
-                <div class="p-8">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                            </svg>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-border-light px-4 py-3">
+                            <span class="font-bold text-text-primary">Tiempo perdido</span>
+                            <span class="font-black text-danger">3-5 hs/dia</span>
                         </div>
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" :class="expanded === 2 ? 'bg-primary text-white rotate-45' : 'bg-slate-100 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary'">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-border-light px-4 py-3">
+                            <span class="font-bold text-text-primary">Consultas repetidas</span>
+                            <span class="font-black text-warning">Todos los dias</span>
                         </div>
-                    </div>
-                    <h3 class="text-xl font-black text-text-primary mb-3 tracking-tight">Las facturas de proveedores se apilan sin cargar</h3>
-                    <p class="text-text-secondary font-medium leading-relaxed">Montos, CUIT, fechas de vencimiento… todo se carga a mano y siempre hay algo que se pierde.</p>
-                </div>
-                <div class="overflow-hidden transition-all duration-500 ease-out" :class="expanded === 2 ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'">
-                    <div class="px-8 pb-8 border-t border-border-light">
-                        <div class="pt-5 flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            </div>
-                            <div>
-                                <p class="font-bold text-text-primary text-sm mb-1">Con CEOnline:</p>
-                                <p class="text-text-secondary text-sm leading-relaxed">Sacale una foto a la factura y la IA extrae proveedor, monto, CUIT y fecha. Sin carga manual.</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 rounded-xl overflow-hidden border border-border-light">
-                            @include('marketing.components.ui-mockup', ['type' => 'invoice', 'label' => 'IA — Factura Edenor S.A.'])
+                        <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-border-light px-4 py-3">
+                            <span class="font-bold text-text-primary">Errores evitables</span>
+                            <span class="font-black text-primary">Cada cierre</span>
                         </div>
                     </div>
                 </div>
-            </div>
+            </aside>
 
-            {{-- Card 4: Información dispersa --}}
-            <div class="group relative rounded-2xl border border-border-light bg-white transition-all duration-500 cursor-pointer overflow-hidden"
-                 :class="[shown ? 'animate-card-reveal' : 'opacity-0', expanded === 3 ? 'shadow-xl border-primary/30 ring-2 ring-primary/10' : 'hover:shadow-lg hover:border-slate-200']"
-                 @click="expanded = expanded === 3 ? null : 3"
-                 style="animation-delay: 0.4s">
-                <div class="p-8">
-                    <div class="flex items-start justify-between mb-5">
-                        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z" />
-                            </svg>
-                        </div>
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" :class="expanded === 3 ? 'bg-primary text-white rotate-45' : 'bg-slate-100 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary'">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-                        </div>
+            {{-- Right: Problem selector + detail panel --}}
+            <div class="lg:col-span-8">
+                <div class="rounded-3xl bg-white border border-border-light shadow-sm overflow-hidden"
+                     :class="shown ? 'animate-section-reveal' : 'opacity-0'">
+                    <div class="p-4 sm:p-5 border-b border-border-light bg-gradient-to-r from-slate-50 to-white">
+                        <p class="text-xs font-black uppercase tracking-[0.15em] text-slate-500">Selecciona el escenario que mas te representa</p>
                     </div>
-                    <h3 class="text-xl font-black text-text-primary mb-3 tracking-tight">Tu información está dispersa entre planillas, WhatsApp y papeles</h3>
-                    <p class="text-text-secondary font-medium leading-relaxed">No hay un solo lugar donde esté todo. Cada dato requiere buscar en tres sitios distintos.</p>
-                </div>
-                <div class="overflow-hidden transition-all duration-500 ease-out" :class="expanded === 3 ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'">
-                    <div class="px-8 pb-8 border-t border-border-light">
-                        <div class="pt-5 flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            </div>
-                            <div>
-                                <p class="font-bold text-text-primary text-sm mb-1">Con CEOnline:</p>
-                                <p class="text-text-secondary text-sm leading-relaxed">Un dashboard unificado con toda tu cartera, comunicaciones, documentos y métricas. Todo en un solo lugar.</p>
-                            </div>
-                        </div>
-                        <div class="mt-4 rounded-xl overflow-hidden border border-border-light">
-                            @include('marketing.components.ui-mockup', ['type' => 'dashboard', 'label' => 'CEO Online — Panel Central'])
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        {{-- Transition Copy + Scroll hint --}}
-        <div class="text-center">
-            <p class="text-xl lg:text-2xl font-bold text-text-primary tracking-tight animate-fade-in-up">
-                CEOnline centraliza todo en un solo sistema.
-            </p>
-            <p class="text-text-secondary font-medium mt-3 text-lg">
-                Y lo hace de forma simple, rápida y sin curva de aprendizaje.
-            </p>
-            <div class="mt-8 animate-fade-in-up delay-300">
-                <a href="#product-showcase" class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:gap-3 transition-all">
-                    Descubrí cómo funciona
-                    <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/></svg>
-                </a>
+                    <div class="grid md:grid-cols-2 gap-3 p-4 sm:p-5">
+                        <button type="button"
+                                @click="active = 0"
+                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
+                                :class="active === 0 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-black uppercase tracking-[0.14em] text-danger">Cierre de expensas</span>
+                                <span class="text-xs font-bold text-slate-500">Mes a mes</span>
+                            </div>
+                            <p class="text-base font-black text-text-primary leading-tight">El cierre te bloquea varios dias y siempre aparece un ajuste de ultimo minuto.</p>
+                        </button>
+
+                        <button type="button"
+                                @click="active = 1"
+                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
+                                :class="active === 1 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-black uppercase tracking-[0.14em] text-warning">Consultas repetidas</span>
+                                <span class="text-xs font-bold text-slate-500">Todos los dias</span>
+                            </div>
+                            <p class="text-base font-black text-text-primary leading-tight">Tu equipo responde lo mismo por WhatsApp, telefono y correo una y otra vez.</p>
+                        </button>
+
+                        <button type="button"
+                                @click="active = 2"
+                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
+                                :class="active === 2 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-black uppercase tracking-[0.14em] text-primary">Carga manual</span>
+                                <span class="text-xs font-bold text-slate-500">Diario</span>
+                            </div>
+                            <p class="text-base font-black text-text-primary leading-tight">Facturas y comprobantes se acumulan, y cada carga manual agrega riesgo de error.</p>
+                        </button>
+
+                        <button type="button"
+                                @click="active = 3"
+                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
+                                :class="active === 3 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-black uppercase tracking-[0.14em] text-slate-700">Info dispersa</span>
+                                <span class="text-xs font-bold text-slate-500">Siempre</span>
+                            </div>
+                            <p class="text-base font-black text-text-primary leading-tight">Planillas, chats y carpetas: encontrar un dato simple te corta el ritmo de trabajo.</p>
+                        </button>
+                    </div>
+
+                    <div class="border-t border-border-light p-6 sm:p-8">
+                        <div x-show="active === 0" x-transition.opacity.duration.300ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-danger mb-3">Escenario 1</p>
+                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Cierre bajo presion: todo depende de vos.</h3>
+                            <p class="text-text-secondary font-medium leading-relaxed mb-5">Cuando el cierre depende de cruces manuales, cualquier diferencia se convierte en reclamo. Y el reclamo siempre llega en el peor momento.</p>
+                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
+                                <p class="text-sm font-bold text-success">Con CEOnline: proceso guiado de liquidacion + calculo automatico por coeficientes + comprobantes listos para enviar.</p>
+                            </div>
+                        </div>
+
+                        <div x-show="active === 1" x-transition.opacity.duration.300ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-warning mb-3">Escenario 2</p>
+                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Atencion reactiva: tu equipo corre detras de mensajes.</h3>
+                            <p class="text-text-secondary font-medium leading-relaxed mb-5">No es que falte atencion: falta un canal donde cada propietario vea su estado sin depender de una respuesta humana.</p>
+                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
+                                <p class="text-sm font-bold text-success">Con CEOnline: portal de propietarios 24/7 con deuda, vencimientos, documentos y novedades en tiempo real.</p>
+                            </div>
+                        </div>
+
+                        <div x-show="active === 2" x-transition.opacity.duration.300ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-primary mb-3">Escenario 3</p>
+                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Carga administrativa infinita: tareas que no agregan valor.</h3>
+                            <p class="text-text-secondary font-medium leading-relaxed mb-5">Cada factura cargada a mano es tiempo que no usas para mejorar gestion, prevenir conflictos o captar nuevos consorcios.</p>
+                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
+                                <p class="text-sm font-bold text-success">Con CEOnline: lectura automatica de comprobantes y centralizacion de gastos sin repetir datos.</p>
+                            </div>
+                        </div>
+
+                        <div x-show="active === 3" x-transition.opacity.duration.300ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-slate-700 mb-3">Escenario 4</p>
+                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Operacion fragmentada: demasiados lugares para buscar lo mismo.</h3>
+                            <p class="text-text-secondary font-medium leading-relaxed mb-5">Cuando la informacion vive en sistemas distintos, la respuesta tarda, la confianza baja y la toma de decisiones se vuelve lenta.</p>
+                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
+                                <p class="text-sm font-bold text-success">Con CEOnline: panel unico de cartera, documentos, comunicaciones y metricas para decidir rapido.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-7 pt-6 border-t border-border-light flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <p class="text-sm text-text-secondary font-semibold">Si te identificaste con 2 o mas escenarios, ya tenes margen claro de mejora.</p>
+                            <a href="#product-showcase" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white text-sm font-black uppercase tracking-wide hover:bg-primary-dark hover:scale-[1.02] transition-all duration-300">
+                                Ver como lo resolvemos
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

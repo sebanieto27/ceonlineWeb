@@ -36,7 +36,11 @@
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+
+    {{-- Preload critical logo --}}
+    <link rel="preload" as="image" type="image/webp" href="{{ asset('logo/logo-ceonline.webp') }}">
 
     {{-- Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
