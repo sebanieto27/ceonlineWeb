@@ -1,11 +1,33 @@
-{{-- Pain Points — Conversion-focused Diagnostic Section --}}
-<section class="py-20 lg:py-28 bg-slate-50 relative overflow-hidden" id="pain-points"
-         x-data="{ active: 0, shown: false }"
-         x-intersect.once="shown = true">
-    <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none"></div>
+{{-- Pain Points — Slack-like Interactive Rail --}}
+<section class="py-20 lg:py-28 relative overflow-hidden" id="pain-points"
+         x-data="{
+            active: 0,
+            timer: null,
+            duration: 5200,
+            items: 4,
+            autoplay: true,
+            start() {
+                if (!this.autoplay) return;
+                this.stop();
+                this.timer = setInterval(() => {
+                    this.active = (this.active + 1) % this.items;
+                }, this.duration);
+            },
+            stop() {
+                if (this.timer) clearInterval(this.timer);
+                this.timer = null;
+            },
+            choose(index) {
+                this.active = index;
+                this.start();
+            }
+         }"
+         x-init="if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) autoplay = false; start();"
+         @mouseenter="stop()"
+         @mouseleave="start()">
+    <div class="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-primary/15 via-primary/6 to-transparent pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {{-- Section Header --}}
         <div class="text-center max-w-4xl mx-auto mb-12 lg:mb-16">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.18em] bg-danger/10 text-danger mb-5">
                 Diagnostico real de administracion
@@ -14,148 +36,105 @@
                 Si tu dia arranca apagando incendios, no es falta de esfuerzo: es falta de sistema.
             </h2>
             <p class="mt-5 text-lg text-text-secondary font-medium leading-relaxed">
-                Estas fricciones operativas se repiten todos los meses y terminan impactando en tu tiempo, en tu equipo y en la percepcion de los propietarios.
+                Estas fricciones se repiten mes a mes. Elegi una y mira como impacta en tu operacion diaria.
             </p>
         </div>
 
-        {{-- Interactive Diagnostic Layout --}}
-        <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
-            {{-- Left: Tension and urgency --}}
-            <aside class="lg:col-span-4">
-                <div class="rounded-3xl border border-danger/20 bg-white p-7 lg:p-8 shadow-sm"
-                     :class="shown ? 'animate-section-reveal' : 'opacity-0'">
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger/40"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-danger"></span>
-                        </span>
-                        <p class="text-xs font-black uppercase tracking-[0.16em] text-danger">Alerta de desgaste</p>
-                    </div>
+        <div class="rounded-3xl border border-border-light bg-white shadow-[0_24px_70px_-40px_rgba(15,23,42,0.45)] overflow-hidden">
+            <div class="grid lg:grid-cols-12">
+                {{-- Left rail: titles + auto progress --}}
+                <aside class="lg:col-span-5 bg-gradient-to-b from-slate-50 to-white border-b lg:border-b-0 lg:border-r border-border-light p-5 sm:p-7 lg:p-8">
+                    <p class="text-xs font-black uppercase tracking-[0.15em] text-slate-500 mb-4">Situaciones tipicas</p>
 
-                    <p class="text-2xl lg:text-3xl font-black text-text-primary tracking-tight leading-tight mb-5">
-                        No es un "mes complicado".<br>
-                        Es un patron que te quita rentabilidad.
-                    </p>
-
-                    <p class="text-text-secondary font-medium leading-relaxed mb-6">
-                        Cuanto mas se normaliza el caos, mas dificil es crecer sin perder calidad de atencion.
-                    </p>
-
-                    <div class="space-y-3 text-sm">
-                        <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-border-light px-4 py-3">
-                            <span class="font-bold text-text-primary">Tiempo perdido</span>
-                            <span class="font-black text-danger">3-5 hs/dia</span>
-                        </div>
-                        <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-border-light px-4 py-3">
-                            <span class="font-bold text-text-primary">Consultas repetidas</span>
-                            <span class="font-black text-warning">Todos los dias</span>
-                        </div>
-                        <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-border-light px-4 py-3">
-                            <span class="font-bold text-text-primary">Errores evitables</span>
-                            <span class="font-black text-primary">Cada cierre</span>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            {{-- Right: Problem selector + detail panel --}}
-            <div class="lg:col-span-8">
-                <div class="rounded-3xl bg-white border border-border-light shadow-sm overflow-hidden"
-                     :class="shown ? 'animate-section-reveal' : 'opacity-0'">
-                    <div class="p-4 sm:p-5 border-b border-border-light bg-gradient-to-r from-slate-50 to-white">
-                        <p class="text-xs font-black uppercase tracking-[0.15em] text-slate-500">Selecciona el escenario que mas te representa</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-3 p-4 sm:p-5">
-                        <button type="button"
-                                @click="active = 0"
-                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
-                                :class="active === 0 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-black uppercase tracking-[0.14em] text-danger">Cierre de expensas</span>
-                                <span class="text-xs font-bold text-slate-500">Mes a mes</span>
+                    <div class="space-y-3">
+                        <button type="button" @click="choose(0)" class="diagnostic-item w-full text-left rounded-2xl p-4 transition-all duration-300"
+                                :class="active === 0 ? 'bg-primary/5 ring-1 ring-primary/20 shadow-sm' : 'bg-white hover:bg-slate-50 border border-border-light'">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-base sm:text-lg font-black tracking-tight" :class="active === 0 ? 'text-primary-dark' : 'text-text-primary'">Cierre de expensas fuera de control</h3>
+                                <span class="text-[11px] font-black uppercase tracking-[0.14em]" :class="active === 0 ? 'text-primary' : 'text-slate-400'">01</span>
                             </div>
-                            <p class="text-base font-black text-text-primary leading-tight">El cierre te bloquea varios dias y siempre aparece un ajuste de ultimo minuto.</p>
+                            <p class="mt-2 text-sm text-text-secondary">Correcciones de ultimo momento, calculos manuales y reclamos por diferencias.</p>
+                            <div class="diagnostic-progress mt-4"><span :class="active === 0 ? 'diagnostic-progress-fill is-active' : 'diagnostic-progress-fill'" :style="`animation-duration:${duration}ms`"></span></div>
                         </button>
 
-                        <button type="button"
-                                @click="active = 1"
-                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
-                                :class="active === 1 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-black uppercase tracking-[0.14em] text-warning">Consultas repetidas</span>
-                                <span class="text-xs font-bold text-slate-500">Todos los dias</span>
+                        <button type="button" @click="choose(1)" class="diagnostic-item w-full text-left rounded-2xl p-4 transition-all duration-300"
+                                :class="active === 1 ? 'bg-primary/5 ring-1 ring-primary/20 shadow-sm' : 'bg-white hover:bg-slate-50 border border-border-light'">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-base sm:text-lg font-black tracking-tight" :class="active === 1 ? 'text-primary-dark' : 'text-text-primary'">Mensajes repetidos todo el dia</h3>
+                                <span class="text-[11px] font-black uppercase tracking-[0.14em]" :class="active === 1 ? 'text-primary' : 'text-slate-400'">02</span>
                             </div>
-                            <p class="text-base font-black text-text-primary leading-tight">Tu equipo responde lo mismo por WhatsApp, telefono y correo una y otra vez.</p>
+                            <p class="mt-2 text-sm text-text-secondary">El equipo responde siempre lo mismo por canales distintos sin ganar tiempo.</p>
+                            <div class="diagnostic-progress mt-4"><span :class="active === 1 ? 'diagnostic-progress-fill is-active' : 'diagnostic-progress-fill'" :style="`animation-duration:${duration}ms`"></span></div>
                         </button>
 
-                        <button type="button"
-                                @click="active = 2"
-                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
-                                :class="active === 2 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-black uppercase tracking-[0.14em] text-primary">Carga manual</span>
-                                <span class="text-xs font-bold text-slate-500">Diario</span>
+                        <button type="button" @click="choose(2)" class="diagnostic-item w-full text-left rounded-2xl p-4 transition-all duration-300"
+                                :class="active === 2 ? 'bg-primary/5 ring-1 ring-primary/20 shadow-sm' : 'bg-white hover:bg-slate-50 border border-border-light'">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-base sm:text-lg font-black tracking-tight" :class="active === 2 ? 'text-primary-dark' : 'text-text-primary'">Facturas y comprobantes acumulados</h3>
+                                <span class="text-[11px] font-black uppercase tracking-[0.14em]" :class="active === 2 ? 'text-primary' : 'text-slate-400'">03</span>
                             </div>
-                            <p class="text-base font-black text-text-primary leading-tight">Facturas y comprobantes se acumulan, y cada carga manual agrega riesgo de error.</p>
+                            <p class="mt-2 text-sm text-text-secondary">La carga manual come horas y aumenta riesgo de errores evitables.</p>
+                            <div class="diagnostic-progress mt-4"><span :class="active === 2 ? 'diagnostic-progress-fill is-active' : 'diagnostic-progress-fill'" :style="`animation-duration:${duration}ms`"></span></div>
                         </button>
 
-                        <button type="button"
-                                @click="active = 3"
-                                class="group text-left rounded-2xl border p-4 transition-all duration-300"
-                                :class="active === 3 ? 'border-primary/30 bg-primary/5 shadow-sm ring-2 ring-primary/10' : 'border-border-light hover:border-primary/25 hover:-translate-y-0.5'">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-black uppercase tracking-[0.14em] text-slate-700">Info dispersa</span>
-                                <span class="text-xs font-bold text-slate-500">Siempre</span>
+                        <button type="button" @click="choose(3)" class="diagnostic-item w-full text-left rounded-2xl p-4 transition-all duration-300"
+                                :class="active === 3 ? 'bg-primary/5 ring-1 ring-primary/20 shadow-sm' : 'bg-white hover:bg-slate-50 border border-border-light'">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-base sm:text-lg font-black tracking-tight" :class="active === 3 ? 'text-primary-dark' : 'text-text-primary'">Informacion partida en varios lugares</h3>
+                                <span class="text-[11px] font-black uppercase tracking-[0.14em]" :class="active === 3 ? 'text-primary' : 'text-slate-400'">04</span>
                             </div>
-                            <p class="text-base font-black text-text-primary leading-tight">Planillas, chats y carpetas: encontrar un dato simple te corta el ritmo de trabajo.</p>
+                            <p class="mt-2 text-sm text-text-secondary">Planillas, chats y archivos sueltos: buscar datos frena cada decision.</p>
+                            <div class="diagnostic-progress mt-4"><span :class="active === 3 ? 'diagnostic-progress-fill is-active' : 'diagnostic-progress-fill'" :style="`animation-duration:${duration}ms`"></span></div>
                         </button>
                     </div>
+                </aside>
 
-                    <div class="border-t border-border-light p-6 sm:p-8">
-                        <div x-show="active === 0" x-transition.opacity.duration.300ms>
-                            <p class="text-xs font-black uppercase tracking-[0.14em] text-danger mb-3">Escenario 1</p>
-                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Cierre bajo presion: todo depende de vos.</h3>
-                            <p class="text-text-secondary font-medium leading-relaxed mb-5">Cuando el cierre depende de cruces manuales, cualquier diferencia se convierte en reclamo. Y el reclamo siempre llega en el peor momento.</p>
-                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
-                                <p class="text-sm font-bold text-success">Con CEOnline: proceso guiado de liquidacion + calculo automatico por coeficientes + comprobantes listos para enviar.</p>
+                {{-- Right panel: mockup synced with active title --}}
+                <div class="lg:col-span-7 p-5 sm:p-7 lg:p-8 bg-white">
+                    <div class="min-h-[460px]">
+                        <div x-show="active === 0" x-transition.opacity.duration.350ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-primary mb-3">Caso 01</p>
+                            <h3 class="text-2xl lg:text-3xl font-black tracking-tight text-text-primary mb-3">Cierre mensual sin cuello de botella</h3>
+                            <p class="text-text-secondary font-medium mb-5">Automatiza calculos de expensas y evita volver a empezar cuando aparece una diferencia de ultimo minuto.</p>
+                            <div class="rounded-2xl border border-border-light overflow-hidden">
+                                @include('marketing.components.ui-mockup', ['type' => 'table', 'label' => 'Liquidaciones - Cierre de mes'])
                             </div>
                         </div>
 
-                        <div x-show="active === 1" x-transition.opacity.duration.300ms>
-                            <p class="text-xs font-black uppercase tracking-[0.14em] text-warning mb-3">Escenario 2</p>
-                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Atencion reactiva: tu equipo corre detras de mensajes.</h3>
-                            <p class="text-text-secondary font-medium leading-relaxed mb-5">No es que falte atencion: falta un canal donde cada propietario vea su estado sin depender de una respuesta humana.</p>
-                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
-                                <p class="text-sm font-bold text-success">Con CEOnline: portal de propietarios 24/7 con deuda, vencimientos, documentos y novedades en tiempo real.</p>
+                        <div x-show="active === 1" x-transition.opacity.duration.350ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-primary mb-3">Caso 02</p>
+                            <h3 class="text-2xl lg:text-3xl font-black tracking-tight text-text-primary mb-3">Canal unico para propietarios</h3>
+                            <p class="text-text-secondary font-medium mb-5">Tus propietarios consultan estado de cuenta, vencimientos y avisos sin depender de mensajes manuales.</p>
+                            <div class="rounded-2xl border border-border-light overflow-hidden">
+                                @include('marketing.components.ui-mockup', ['type' => 'mobile', 'label' => 'Portal de propietarios'])
                             </div>
                         </div>
 
-                        <div x-show="active === 2" x-transition.opacity.duration.300ms>
-                            <p class="text-xs font-black uppercase tracking-[0.14em] text-primary mb-3">Escenario 3</p>
-                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Carga administrativa infinita: tareas que no agregan valor.</h3>
-                            <p class="text-text-secondary font-medium leading-relaxed mb-5">Cada factura cargada a mano es tiempo que no usas para mejorar gestion, prevenir conflictos o captar nuevos consorcios.</p>
-                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
-                                <p class="text-sm font-bold text-success">Con CEOnline: lectura automatica de comprobantes y centralizacion de gastos sin repetir datos.</p>
+                        <div x-show="active === 2" x-transition.opacity.duration.350ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-primary mb-3">Caso 03</p>
+                            <h3 class="text-2xl lg:text-3xl font-black tracking-tight text-text-primary mb-3">Carga inteligente de comprobantes</h3>
+                            <p class="text-text-secondary font-medium mb-5">Procesa facturas de proveedores en segundos con extraccion automatica de datos clave.</p>
+                            <div class="rounded-2xl border border-border-light overflow-hidden">
+                                @include('marketing.components.ui-mockup', ['type' => 'invoice', 'label' => 'Lectura automatica de factura'])
                             </div>
                         </div>
 
-                        <div x-show="active === 3" x-transition.opacity.duration.300ms>
-                            <p class="text-xs font-black uppercase tracking-[0.14em] text-slate-700 mb-3">Escenario 4</p>
-                            <h3 class="text-2xl font-black text-text-primary tracking-tight mb-4">Operacion fragmentada: demasiados lugares para buscar lo mismo.</h3>
-                            <p class="text-text-secondary font-medium leading-relaxed mb-5">Cuando la informacion vive en sistemas distintos, la respuesta tarda, la confianza baja y la toma de decisiones se vuelve lenta.</p>
-                            <div class="rounded-2xl border border-success/20 bg-success/5 p-4">
-                                <p class="text-sm font-bold text-success">Con CEOnline: panel unico de cartera, documentos, comunicaciones y metricas para decidir rapido.</p>
+                        <div x-show="active === 3" x-transition.opacity.duration.350ms>
+                            <p class="text-xs font-black uppercase tracking-[0.14em] text-primary mb-3">Caso 04</p>
+                            <h3 class="text-2xl lg:text-3xl font-black tracking-tight text-text-primary mb-3">Vision completa de toda tu cartera</h3>
+                            <p class="text-text-secondary font-medium mb-5">Concentra documentos, comunicaciones y metricas en un solo panel para decidir mas rapido.</p>
+                            <div class="rounded-2xl border border-border-light overflow-hidden">
+                                @include('marketing.components.ui-mockup', ['type' => 'dashboard', 'label' => 'Panel central de administracion'])
                             </div>
                         </div>
+                    </div>
 
-                        <div class="mt-7 pt-6 border-t border-border-light flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                            <p class="text-sm text-text-secondary font-semibold">Si te identificaste con 2 o mas escenarios, ya tenes margen claro de mejora.</p>
-                            <a href="#product-showcase" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white text-sm font-black uppercase tracking-wide hover:bg-primary-dark hover:scale-[1.02] transition-all duration-300">
-                                Ver como lo resolvemos
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                            </a>
-                        </div>
+                    <div class="mt-6 pt-5 border-t border-border-light flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                        <p class="text-sm font-semibold text-text-secondary">Cuando el problema se repite todos los meses, la solucion tiene que ser sistemica.</p>
+                        <a href="#product-showcase" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white text-sm font-black uppercase tracking-wide hover:bg-primary-dark transition-all duration-300">
+                            Ver como funciona
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>

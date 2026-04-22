@@ -5,11 +5,14 @@
 
 @section('content')
 
-{{-- 1. Hero --}}
-@include('marketing.components.hero')
+    {{-- Unified Background Container for Hero and Pain Points Fusion --}}
+    <div class="relative w-full" style="background: linear-gradient(180deg, #f8fbff 0%, #e8f3fa 65%, #f4f8fc 92%, #f8fafc 100%);">
+        {{-- 1. Hero --}}
+        @include('marketing.components.hero')
 
-{{-- 2. Pain Points — Emotional identification --}}
-@include('marketing.home-sections.pain-points')
+        {{-- 2. Pain Points — Emotional identification --}}
+        @include('marketing.home-sections.pain-points')
+    </div>
 
 {{-- 3. Product Tabs — Interactive showcase --}}
 @include('marketing.home-sections.product-tabs')

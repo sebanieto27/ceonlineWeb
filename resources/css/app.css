@@ -219,6 +219,46 @@ body {
         radial-gradient(1200px circle at 50% 100%, rgba(23, 157, 217, 0.03) 0%, transparent 100%);
 }
 
+/* Home hero-only background (reference: soft gradient + single lower crescent wave) */
+.hero-wave-bg {
+    position: relative;
+    isolation: isolate;
+    background: transparent;
+}
+
+.hero-wave-bg::after {
+    content: "";
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(0.6px);
+    animation: hero-crescent-drift 28s ease-in-out infinite alternate;
+    /* Pure white to transparent gradient to act as a subtle surface highlight/mask */
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.4) 40%,
+        rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(268deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.05));
+    width: 180%;
+    height: clamp(360px, 48vw, 620px);
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translate(-50%);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 620' preserveAspectRatio='none'%3E%3Cpath d='M0 330C220 170 500 120 720 126C940 132 1220 182 1440 334V620H0Z' fill='black'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 620' preserveAspectRatio='none'%3E%3Cpath d='M0 330C220 170 500 120 720 126C940 132 1220 182 1440 334V620H0Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.hero-wave-bg > * {
+    position: relative;
+    z-index: 1;
+}
+
 .bg-mesh-celeste {
     background-color: #f0f9ff;
     background-image: 
@@ -262,6 +302,11 @@ body {
     50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
 }
 
+@keyframes hero-crescent-drift {
+    0% { transform: translateX(-50%) translateY(0) scale(1); }
+    100% { transform: translateX(-49.6%) translateY(-8px) scale(1.012); }
+}
+
 .animate-cta-pulse {
     animation: cta-pulse 2.5s ease-in-out infinite;
 }
@@ -300,6 +345,62 @@ body {
 
 .animate-section-reveal {
     animation: section-reveal 0.7s ease-out both;
+}
+
+/* ── Diagnostic Rail Progress (Slack-style autoplay) ── */
+.diagnostic-progress {
+    height: 4px;
+    width: 100%;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.diagnostic-progress-fill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, #0b75b2 0%, #179dd9 100%);
+}
+
+.diagnostic-progress-fill.is-active {
+    animation: diagnostic-fill linear both;
+}
+
+@keyframes diagnostic-fill {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-wave-bg::after {
+        width: 205%;
+        height: clamp(320px, 58vw, 560px);
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-wave-bg::after {
+        width: 255%;
+        height: clamp(300px, 72vw, 500px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-wave-bg::after {
+        animation: none;
+    }
+
+    .diagnostic-progress-fill.is-active {
+        animation: none;
+        transform: scaleX(1);
+    }
 }
 
 /* ── Smooth scroll ── */

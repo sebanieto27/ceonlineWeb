@@ -1,9 +1,9 @@
 {{-- Hero Section — Slack-style Centered --}}
-<section class="gradient-hero gradient-mesh relative overflow-hidden">
+<section class="relative overflow-hidden hero-wave-bg">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-44 pb-16 lg:pb-24">
         {{-- Centered Text Block --}}
         <div class="text-center relative z-10">
-            <h1 class="text-[2.5rem] sm:text-6xl lg:text-[5.5rem] font-black text-text-primary leading-[1.05] tracking-tight mb-6 animate-fade-in-up">
+            <h1 class="text-[2.5rem] sm:text-6xl lg:text-[4rem] font-black text-text-primary leading-[1.05] tracking-tight mb-6 animate-fade-in-up">
                 El sistema de gestión que tu administración
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">necesita.</span>
             </h1>
@@ -17,7 +17,7 @@
                 <a href="{{ route('demo') }}" class="px-8 py-4 bg-primary text-white font-black rounded-lg text-base uppercase tracking-widest hover:bg-primary-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/30 animate-cta-pulse">
                     Solicitar demo
                 </a>
-                <a href="{{ route('features') }}" class="px-8 py-4 border-2 border-gray-200 text-text-primary font-black rounded-lg text-base uppercase tracking-widest hover:border-primary hover:bg-primary/5 transition-all">
+                <a href="{{ route('features') }}" class="px-8 py-4 border-2 border-primary-dark/45 bg-white/85 text-primary-dark font-black rounded-lg text-base uppercase tracking-widest shadow-sm hover:border-primary-dark hover:bg-white transition-all duration-300">
                     Ver funciones
                 </a>
             </div>
@@ -32,7 +32,7 @@
 
         {{-- #PH-01 — Product Screenshot (reemplazar con screenshot real del dashboard) --}}
         <div class="mt-16 lg:mt-20 relative animate-fade-in-up delay-500">
-            <div class="relative max-w-5xl mx-auto">
+            <div class="relative max-w-4xl mx-auto">
                 @include('marketing.components.ui-mockup', ['type' => 'dashboard', 'label' => 'CEO Online — Panel Principal'])
             </div>
             {{-- Decorative gradient behind --}}
