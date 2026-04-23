@@ -1,5 +1,5 @@
 {{-- Pain Points — Slack-like Interactive Rail --}}
-<section class="py-20 lg:py-28 relative overflow-hidden" id="pain-points"
+<section class="pt-24 lg:pt-40 pb-20 lg:pb-28 relative overflow-hidden z-10" id="pain-points"
          x-data="{
             active: 0,
             timer: null,
@@ -29,10 +29,7 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="text-center max-w-4xl mx-auto mb-12 lg:mb-16">
-            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.18em] bg-danger/10 text-danger mb-5">
-                Diagnostico real de administracion
-            </span>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-text-primary leading-[1.05] tracking-tight">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-text-primary leading-[1.1] tracking-tight">
                 Si tu dia arranca apagando incendios, no es falta de esfuerzo: es falta de sistema.
             </h2>
             <p class="mt-5 text-lg text-text-secondary font-medium leading-relaxed">

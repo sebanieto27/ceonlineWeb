@@ -6,7 +6,7 @@
 @section('content')
 
     {{-- Unified Background Container for Hero and Pain Points Fusion --}}
-    <div class="relative w-full" style="background: linear-gradient(180deg, #f8fbff 0%, #e8f3fa 65%, #f4f8fc 92%, #f8fafc 100%);">
+    <div class="relative w-full overflow-x-clip" style="background: linear-gradient(180deg, #f8fbff 0%, #e8f3fa 75%, #f4f8fc 94%, #f8fafc 100%);">
         {{-- 1. Hero --}}
         @include('marketing.components.hero')
 

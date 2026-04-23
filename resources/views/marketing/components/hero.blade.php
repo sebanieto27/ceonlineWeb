@@ -1,8 +1,8 @@
 {{-- Hero Section — Slack-style Centered --}}
-<section class="relative overflow-hidden hero-wave-bg">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-44 pb-16 lg:pb-24">
+<section class="relative hero-wave-bg z-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-28 pb-0">
         {{-- Centered Text Block --}}
-        <div class="text-center relative z-10">
+        <div class="text-center relative z-20">
             <h1 class="text-[2.5rem] sm:text-6xl lg:text-[4rem] font-black text-text-primary leading-[1.05] tracking-tight mb-6 animate-fade-in-up">
                 El sistema de gestión que tu administración
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">necesita.</span>
@@ -30,8 +30,8 @@
             </div>
         </div>
 
-        {{-- #PH-01 — Product Screenshot (reemplazar con screenshot real del dashboard) --}}
-        <div class="mt-16 lg:mt-20 relative animate-fade-in-up delay-500">
+        {{-- #PH-01 — Product Screenshot --}}
+        <div class="mt-8 lg:mt-12 relative animate-fade-in-up delay-500 -mb-16 lg:-mb-28 z-40">
             <div class="relative max-w-4xl mx-auto">
                 @include('marketing.components.ui-mockup', ['type' => 'dashboard', 'label' => 'CEO Online — Panel Principal'])
             </div>
