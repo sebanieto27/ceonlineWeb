@@ -2,6 +2,7 @@
 
 @section('title', 'Características - CEO Online')
 @section('description', 'Descubrí los 15 módulos de CEO Online: liquidaciones automáticas, portal del propietario, IA para facturas, chat en tiempo real, reportes y más.')
+@section('keywords', 'funciones software consorcios, liquidaciones automáticas expensas, portal propietario consorcio, IA facturas proveedores, CEO Online módulos')
 
 @section('content')
 
@@ -22,7 +23,7 @@
 </section>
 
 {{-- Category 1: Finanzas — bg-white --}}
-<section class="py-20 lg:py-28 bg-white">
+<section id="liquidaciones" class="py-20 lg:py-28 bg-white scroll-mt-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
          x-data="{ shown: false }" x-intersect.once="shown = true"
          :class="shown ? 'animate-section-reveal' : 'opacity-0'">
@@ -64,7 +65,7 @@
 </section>
 
 {{-- Category 2: Propietarios — bg-slate-50 --}}
-<section class="py-20 lg:py-28 bg-slate-50">
+<section id="propietarios" class="py-20 lg:py-28 bg-slate-50 scroll-mt-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
          x-data="{ shown: false }" x-intersect.once="shown = true"
          :class="shown ? 'animate-section-reveal' : 'opacity-0'">
@@ -106,7 +107,7 @@
 </section>
 
 {{-- Category 3: IA & Proveedores — DARK SECTION --}}
-<section class="py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-primary-dark to-slate-900 relative overflow-hidden">
+<section id="ia-facturas" class="py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-primary-dark to-slate-900 relative overflow-hidden scroll-mt-28">
     <div class="absolute inset-0 bg-texture-dots opacity-10 pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
          x-data="{ shown: false }" x-intersect.once="shown = true"
@@ -150,7 +151,7 @@
 </section>
 
 {{-- Category 4: Operaciones — bg-white --}}
-<section class="py-20 lg:py-28 bg-white">
+<section id="operaciones" class="py-20 lg:py-28 bg-white scroll-mt-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
          x-data="{ shown: false }" x-intersect.once="shown = true"
          :class="shown ? 'animate-section-reveal' : 'opacity-0'">
@@ -205,7 +206,7 @@
 </section>
 
 {{-- Category 5: Soporte — bg-slate-50 --}}
-<section class="py-20 lg:py-28 bg-slate-50">
+<section id="soporte" class="py-20 lg:py-28 bg-slate-50 scroll-mt-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
          x-data="{ shown: false }" x-intersect.once="shown = true"
          :class="shown ? 'animate-section-reveal' : 'opacity-0'">

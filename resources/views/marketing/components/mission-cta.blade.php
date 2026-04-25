@@ -15,22 +15,40 @@
             Nuestro objetivo es impulsar el crecimiento de las administraciones.
         </h2>
 
-        {{-- Stats Grid (Reduced to 2 key items) --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-16 mb-16 max-w-3xl mx-auto">
-            {{-- Stat 1 --}}
-            <div x-data="counter" x-intersect.once="start" data-target="200" data-suffix="+" class="text-center group">
-                <div class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-2 lg:mb-3 tracking-tighter transition-transform group-hover:scale-105 duration-500">
-                    <span x-text="current">0</span><span x-text="suffix"></span>
+        {{-- Stats Grid — 4 items --}}
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16"
+             x-data="{ 
+                stats: [
+                    { target: 200, current: 0, suffix: '+', label: 'Consorcios gestionados' },
+                    { target: 42000, current: 0, suffix: '+', label: 'Propietarios activos' },
+                    { target: 15, current: 0, suffix: '', label: 'Módulos activos' },
+                    { target: 80, current: 0, suffix: 'h', label: 'Recuperadas por mes' }
+                ],
+                started: false,
+                start() {
+                    if (this.started) return;
+                    this.started = true;
+                    this.stats.forEach(s => {
+                        let steps = 40;
+                        let increment = s.target / steps;
+                        let count = 0;
+                        let interval = setInterval(() => {
+                            count++;
+                            s.current = Math.min(Math.round(increment * count), s.target);
+                            if (count >= steps) clearInterval(interval);
+                        }, 30);
+                    });
+                }
+             }"
+             x-intersect.once="start()">
+            <template x-for="(stat, index) in stats" :key="index">
+                <div class="text-center group">
+                    <div class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter mb-2 transition-transform group-hover:scale-105 duration-500">
+                        <span x-text="stat.target === 42000 ? stat.current.toLocaleString('es-AR') : stat.current">0</span><span x-text="stat.suffix"></span>
+                    </div>
+                    <p class="text-white font-bold text-xs lg:text-sm uppercase tracking-[0.3em]" x-text="stat.label"></p>
                 </div>
-                <p class="text-white font-bold text-xs lg:text-sm uppercase tracking-[0.3em]">Consorcios gestionados</p>
-            </div>
-            {{-- Stat 2 --}}
-            <div x-data="counter" x-intersect.once="start" data-target="42000" data-suffix="+" class="text-center group">
-                <div class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-2 lg:mb-3 tracking-tighter transition-transform group-hover:scale-105 duration-500">
-                    <span x-text="current.toLocaleString('es-AR')">0</span><span x-text="suffix"></span>
-                </div>
-                <p class="text-white font-bold text-xs lg:text-sm uppercase tracking-[0.3em]">Propietarios</p>
-            </div>
+            </template>
         </div>
 
         {{-- CTA Wrapper --}}
@@ -53,44 +71,4 @@
     </div>
 </section>
 
-{{-- Resources Section — Latest Blog Posts --}}
-@php
-    $latestPosts = \App\Models\Post::where('is_published', true)->latest('published_at')->take(3)->get();
-@endphp
-@if($latestPosts->count() > 0)
-<section class="py-20 lg:py-28 bg-surface">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl lg:text-5xl font-black text-text-primary leading-[1.08] tracking-tight mb-4">
-                Recursos para tu administración
-            </h2>
-            <p class="text-lg text-text-secondary font-medium">Novedades, guías y todo lo que necesitás saber sobre gestión de consorcios.</p>
-        </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            @foreach($latestPosts as $post)
-            <a href="{{ route('blog.show', $post->slug) }}" class="group bg-white rounded-2xl border border-border-light overflow-hidden hover:shadow-lg transition-all duration-300">
-                @if($post->image)
-                <div class="aspect-[16/9] overflow-hidden">
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </div>
-                @endif
-                <div class="p-6">
-                    @if($post->category)
-                    <span class="text-xs font-bold text-primary uppercase tracking-wider">{{ $post->category->name }}</span>
-                    @endif
-                    <h3 class="text-lg font-black text-text-primary mt-2 mb-3 group-hover:text-primary transition-colors leading-snug">{{ $post->title }}</h3>
-                    <p class="text-sm text-text-secondary font-medium line-clamp-2">{{ $post->excerpt }}</p>
-                </div>
-            </a>
-            @endforeach
-        </div>
-
-        <div class="text-center mt-10">
-            <a href="{{ route('blog.index') }}" class="text-primary font-bold text-lg hover:text-primary-dark hover:underline inline-flex items-center gap-2 transition-colors">
-                Ver todos los artículos <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
-        </div>
-    </div>
-</section>
-@endif

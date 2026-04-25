@@ -2,6 +2,7 @@
 
 @section('title', 'CEO Online - Gestión Integral de Consorcios')
 @section('description', 'La plataforma más completa para gestionar consorcios. Expensas, pagos, comunicación, reportes y más. Prueba gratis.')
+@section('keywords', 'software gestión consorcios Argentina, sistema administración consorcios, expensas automáticas, plataforma consorcios IA, CEO Online')
 
 @section('content')
 
@@ -23,13 +24,13 @@
 {{-- 5. AI Spotlight — Dark impact section --}}
 @include('marketing.home-sections.ai-spotlight')
 
-{{-- 6. Social Proof — Stats with counters --}}
-@include('marketing.components.social-proof')
-
 {{-- 7. Testimonials --}}
 @include('marketing.components.testimonial')
 
-{{-- 8. Blog Resources --}}
+{{-- 8. Acompañamiento — Diferencial clave --}}
+@include('marketing.home-sections.support-accompany')
+
+{{-- 9. Blog Resources --}}
 @include('marketing.home-sections.blog-resources')
 
 {{-- 9. Final CTA --}}

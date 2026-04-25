@@ -2,6 +2,7 @@
 
 @section('title', 'Términos y Condiciones - CEO Online')
 @section('description', 'Términos y condiciones de uso de la plataforma CEO Online para gestión de consorcios.')
+@section('robots', 'noindex, nofollow')
 
 @section('content')
 

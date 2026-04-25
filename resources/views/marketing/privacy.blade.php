@@ -2,6 +2,7 @@
 
 @section('title', 'Política de Privacidad - CEO Online')
 @section('description', 'Política de privacidad de CEO Online. Cómo protegemos y utilizamos tus datos personales.')
+@section('robots', 'noindex, nofollow')
 
 @section('content')
 

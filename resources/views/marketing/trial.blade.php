@@ -50,6 +50,7 @@
 
                 <form action="{{ route('demo.submit') }}" method="POST" class="space-y-5">
                     @csrf
+                    <input type="hidden" name="source" value="trial">
                     <div>
                         <label for="name" class="block text-sm font-bold text-text-primary mb-2">Nombre completo</label>
                         <input type="text" id="name" name="name" required value="{{ old('name') }}"

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEO Online — Links</title>
     <meta name="description" content="Todos los links de CEO Online: demo, contacto, blog, redes sociales y más.">
+    <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="{{ asset('logo/logo-ceonline.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,7 +41,10 @@
 </head>
 <body>
     <div class="logo">
-        <img src="{{ asset('logo/logo-ceonline.png') }}" alt="CEO Online">
+        <picture>
+            <source srcset="{{ asset('logo/logo-ceonline.webp') }}" type="image/webp">
+            <img src="{{ asset('logo/logo-ceonline.png') }}" alt="CEO Online">
+        </picture>
     </div>
     <h1>CEO Online</h1>
     <p class="subtitle">Gestión integral de consorcios</p>

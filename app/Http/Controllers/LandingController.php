@@ -79,8 +79,8 @@ class LandingController extends Controller
             'email'   => 'required|email|max:255',
             'phone'   => 'required|string|max:50',
             'company' => 'required|string|max:255',
-            'units'        => 'required|in:1-50,51-100,101-500,500+',
-            'owners_count' => 'required|in:1-20,21-50,51-100,100+',
+            'units'        => 'nullable|in:1-50,51-100,101-500,500+',
+            'owners_count' => 'nullable|in:1-20,21-50,51-100,100+',
             'message'      => 'nullable|string|max:2000',
         ], [
             'name.required'         => 'El nombre es obligatorio.',
@@ -88,10 +88,8 @@ class LandingController extends Controller
             'email.email'           => 'Ingresá un email válido.',
             'phone.required'        => 'El teléfono es obligatorio.',
             'company.required'      => 'El nombre de la administración es obligatorio.',
-            'units.required'        => 'Seleccioná la cantidad de unidades.',
-            'units.in'              => 'Seleccioná una opción válida.',
-            'owners_count.required' => 'Seleccioná la cantidad de propietarios.',
-            'owners_count.in'       => 'Seleccioná una opción válida.',
+            'units.in'         => 'Selección de unidades no válida.',
+            'owners_count.in'  => 'Selección de propietarios no válida.',
         ]);
 
         \App\Models\Lead::create([
@@ -102,7 +100,7 @@ class LandingController extends Controller
             'units'            => $validated['units'],
             'owners_count'     => $validated['owners_count'],
             'message'          => $validated['message'] ?? null,
-            'source'           => 'demo_form',
+            'source'           => $request->input('source') ?: 'demo_form',
             'status'           => 'new',
             'utm_source'       => $request->input('utm_source') ?: session('utm_source'),
             'utm_medium'       => $request->input('utm_medium') ?: session('utm_medium'),

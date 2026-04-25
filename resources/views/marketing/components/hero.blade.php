@@ -4,12 +4,12 @@
         {{-- Centered Text Block --}}
         <div class="text-center relative z-20">
             <h1 class="text-[2.5rem] sm:text-6xl lg:text-[4rem] font-black text-text-primary leading-[1.05] tracking-tight mb-6 animate-fade-in-up">
-                El sistema de gestión que tu administración
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">necesita.</span>
+                Software de gestión de consorcios
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">con IA integrada.</span>
             </h1>
             
             <p class="text-lg sm:text-xl lg:text-2xl text-text-secondary leading-relaxed max-w-3xl mx-auto mb-10 font-medium animate-fade-in-up delay-200">
-                Cerrá el mes en horas, dale transparencia a tus propietarios y gestioná toda tu cartera desde un solo lugar.
+                Cerrá el mes en horas, dale transparencia a tus propietarios y gestioná toda tu cartera desde un solo lugar. Diseñado para administraciones de consorcios en Argentina.
             </p>
 
             {{-- CTAs --}}

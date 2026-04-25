@@ -21,7 +21,7 @@
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary-light">La IA hace el resto.</span>
             </h2>
             <p class="text-lg lg:text-xl text-slate-300 font-medium leading-relaxed max-w-3xl mx-auto animate-fade-in-up delay-200">
-                CEOnline es la primera plataforma de gestión de consorcios con Inteligencia Artificial integrada. Cargá facturas de proveedores en segundos, no en minutos.
+                CEOnline es la plataforma de gestión de consorcios más avanzada de Argentina, con Inteligencia Artificial integrada. Cargá facturas de proveedores en segundos, no en minutos.
             </p>
         </div>
 

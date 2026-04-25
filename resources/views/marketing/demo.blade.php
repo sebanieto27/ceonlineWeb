@@ -41,6 +41,7 @@
 
                 <form action="{{ route('demo.submit') }}" method="POST" class="space-y-6" id="demo-form">
                     @csrf
+                    <input type="hidden" name="source" value="demo">
 
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>
@@ -74,8 +75,8 @@
 
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>
-                            <label for="units" class="block text-xs font-black text-text-primary uppercase tracking-widest mb-3">Cantidad de unidades</label>
-                            <select id="units" name="units" required
+                            <label for="units" class="block text-xs font-black text-text-primary uppercase tracking-widest mb-3">Cantidad de unidades <span class="text-text-tertiary font-medium normal-case">(opcional)</span></label>
+                            <select id="units" name="units"
                                     class="w-full px-5 py-4 bg-white border border-border-light rounded-xl text-text-primary font-bold focus:ring-2 focus:ring-primary focus:border-primary transition-all @error('units') !border-danger @enderror">
                                 <option value="">Seleccioná</option>
                                 <option value="1-50" {{ old('units') == '1-50' ? 'selected' : '' }}>1 - 50 unidades</option>
@@ -85,8 +86,8 @@
                             </select>
                         </div>
                         <div>
-                            <label for="owners_count" class="block text-xs font-black text-text-primary uppercase tracking-widest mb-3">Propietarios que administra</label>
-                            <select id="owners_count" name="owners_count" required
+                            <label for="owners_count" class="block text-xs font-black text-text-primary uppercase tracking-widest mb-3">Propietarios que administra <span class="text-text-tertiary font-medium normal-case">(opcional)</span></label>
+                            <select id="owners_count" name="owners_count"
                                     class="w-full px-5 py-4 bg-white border border-border-light rounded-xl text-text-primary font-bold focus:ring-2 focus:ring-primary focus:border-primary transition-all @error('owners_count') !border-danger @enderror">
                                 <option value="">Seleccioná</option>
                                 <option value="1-20" {{ old('owners_count') == '1-20' ? 'selected' : '' }}>1 - 20</option>

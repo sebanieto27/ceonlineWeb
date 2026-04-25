@@ -76,7 +76,6 @@
                 <ul class="space-y-3">
                     <li><a href="{{ route('blog.index') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Blog y Novedades</a></li>
                     <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Soporte</a></li>
-                    <li><a href="/admincrm" class="text-gray-400 hover:text-white text-sm transition-colors">Acceso Administrador</a></li>
                 </ul>
             </div>
 

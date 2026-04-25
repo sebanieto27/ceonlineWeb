@@ -10,11 +10,11 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
         {{-- Stats (reinforcement) --}}
-        <div class="grid grid-cols-2 gap-8 lg:gap-16 mb-14 max-w-2xl mx-auto" 
+        <div class="grid grid-cols-2 gap-8 lg:gap-16 mb-14 max-w-2xl mx-auto"
              x-data="{ 
                 counters: [
-                    { target: 200, current: 0, suffix: '+', label: 'Consorcios gestionados' },
-                    { target: 42000, current: 0, suffix: '+', label: 'Propietarios activos' }
+                    { target: 4, current: 0, suffix: 'h', label: 'Tiempo promedio de cierre mensual' },
+                    { target: 30, current: 0, suffix: ' días', label: 'De prueba gratuita sin tarjeta' }
                 ],
                 started: false,
                 start() {
@@ -36,7 +36,7 @@
             <template x-for="(counter, index) in counters" :key="index">
                 <div class="text-center">
                     <div class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-2 tracking-tighter">
-                        <span x-text="counter.target === 42000 ? counter.current.toLocaleString('es-AR') : counter.current">0</span><span x-text="counter.suffix"></span>
+                        <span x-text="counter.current">0</span><span x-text="counter.suffix"></span>
                     </div>
                     <p class="text-white/70 font-bold text-xs lg:text-sm uppercase tracking-[0.2em]" x-text="counter.label"></p>
                 </div>

@@ -2,6 +2,7 @@
 
 @section('title', 'Soluciones - CEO Online')
 @section('description', 'Soluciones reales para los problemas del administrador de consorcios: liquidaciones sin estrés, propietarios informados, proveedores bajo control y gestión multi-consorcio.')
+@section('keywords', 'soluciones administración consorcios, cerrar mes rápido consorcios, portal propietarios edificio, gestión multi-consorcio Argentina')
 
 @section('content')
 
@@ -190,9 +191,6 @@
         </div>
     </div>
 </section>
-
-{{-- Social Proof Dark Strip --}}
-@include('marketing.components.social-proof')
 
 {{-- Mission & CTA Unificado (Slack Style) --}}
 @include('marketing.components.mission-cta')

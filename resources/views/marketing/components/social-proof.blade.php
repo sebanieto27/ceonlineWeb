@@ -2,11 +2,6 @@
 <section class="py-20 lg:py-28 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden" id="stats">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-        {{-- Mission Title --}}
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-[1.1] tracking-tight mb-14 lg:mb-20 max-w-3xl mx-auto animate-fade-in-up">
-            Nuestro objetivo es impulsar el crecimiento de las administraciones.
-        </h2>
-
         {{-- Stats Grid --}}
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
              x-data="{ 

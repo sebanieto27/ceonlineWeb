@@ -41,11 +41,18 @@ Alpine.data('counter', () => ({
 // Mobile menu component
 Alpine.data('mobileMenu', () => ({
     open: false,
-    toggle() { this.open = !this.open; },
-    close() { this.open = false; }
+    mobileSection: 'main',
+    toggle() { this.open = !this.open; if (this.open) this.mobileSection = 'main'; },
+    close() { this.open = false; this.mobileSection = 'main'; }
 }));
 
 Alpine.start();
+
+// Pause/resume autoplay timers when tab is hidden/visible
+document.addEventListener('visibilitychange', () => {
+    const event = document.hidden ? 'tab-hidden' : 'tab-visible';
+    document.dispatchEvent(new CustomEvent(event));
+});
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

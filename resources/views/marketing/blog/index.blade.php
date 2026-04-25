@@ -2,6 +2,8 @@
 
 @section('title', 'Blog & Recursos - CEO Online')
 @section('description', 'Consejos, novedades y mejores prácticas para administradores de consorcios y edificios.')
+@section('robots'){{ $posts->isEmpty() ? 'noindex, nofollow' : 'index, follow' }}@endsection
+@section('keywords', 'blog administraci\u00f3n consorcios, tips gestión edificios, normativa propiedad horizontal Argentina, expensas consorcios')
 
 @section('content')
 
@@ -30,11 +32,11 @@
         {{-- Category Filters --}}
         @if(isset($categories) && $categories->count())
         <div class="flex flex-wrap gap-3 mb-14">
-            <a href="{{ route('blog') }}" class="inline-block px-4 py-2 rounded-full text-sm font-black transition-all {{ !request('category') ? 'bg-primary text-white' : 'bg-slate-100 text-text-secondary hover:bg-primary/10 hover:text-primary' }}">
+            <a href="{{ route('blog.index') }}" class="inline-block px-4 py-2 rounded-full text-sm font-black transition-all {{ !request('category') ? 'bg-primary text-white' : 'bg-slate-100 text-text-secondary hover:bg-primary/10 hover:text-primary' }}">
                 Todos
             </a>
             @foreach($categories as $category)
-            <a href="{{ route('blog', ['category' => $category->slug]) }}" class="inline-block px-4 py-2 rounded-full text-sm font-black transition-all {{ request('category') == $category->slug ? 'bg-primary text-white' : 'bg-slate-100 text-text-secondary hover:bg-primary/10 hover:text-primary' }}">
+            <a href="{{ route('blog.index', ['category' => $category->slug]) }}" class="inline-block px-4 py-2 rounded-full text-sm font-black transition-all {{ request('category') == $category->slug ? 'bg-primary text-white' : 'bg-slate-100 text-text-secondary hover:bg-primary/10 hover:text-primary' }}">
                 {{ $category->name }}
             </a>
             @endforeach
