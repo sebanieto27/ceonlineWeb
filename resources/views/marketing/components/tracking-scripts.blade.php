@@ -2,13 +2,38 @@
     $tracking = \App\Models\SiteSetting::getGroup('tracking');
 @endphp
 
-{{-- Google Tag Manager (head) --}}
+{{-- Google Tag Manager — carga diferida hasta primera interacción del usuario --}}
+{{-- Esto evita que GTM bloquee el critical path y mejora el score de Lighthouse --}}
 @if(!empty($tracking['gtm_container_id']))
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','{{ $tracking['gtm_container_id'] }}');</script>
+<script>
+(function() {
+    var gtmId = '{{ $tracking['gtm_container_id'] }}';
+    var gtmLoaded = false;
+
+    function loadGTM() {
+        if (gtmLoaded) return;
+        gtmLoaded = true;
+
+        // Inicializar dataLayer antes de cargar GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
+        document.head.appendChild(s);
+    }
+
+    // Cargar en la primera interacción real del usuario
+    var events = ['scroll', 'click', 'keydown', 'touchstart', 'mousemove'];
+    events.forEach(function(evt) {
+        window.addEventListener(evt, loadGTM, { once: true, passive: true });
+    });
+
+    // Fallback: cargar a los 5 segundos si no hubo interacción (ej: lectores de pantalla)
+    setTimeout(loadGTM, 5000);
+})();
+</script>
 @endif
 
 {{-- Google Analytics 4 (solo si no hay GTM) --}}

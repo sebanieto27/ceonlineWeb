@@ -48,7 +48,7 @@
             <h2 class="text-2xl sm:text-3xl lg:text-5xl font-black text-white leading-[1.08] tracking-tight mb-6 animate-fade-in-up uppercase">
                 ¿Listo para transformar tu administración?
             </h2>
-            <p class="text-white/80 text-base lg:text-xl mb-10 max-w-2xl mx-auto font-medium leading-relaxed animate-fade-in-up delay-200">
+            <p class="text-white/90 text-base lg:text-xl mb-10 max-w-2xl mx-auto font-medium leading-relaxed animate-fade-in-up delay-200">
                 Unite a las administraciones que ya gestionan con CEOnline. Solicitá una demo y descubrí cómo simplificar tu operación.
             </p>
 
@@ -63,7 +63,7 @@
             </div>
 
             {{-- Trust Indicators --}}
-            <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 items-center justify-center text-sm font-medium text-white/60">
+            <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 items-center justify-center text-sm font-medium text-white/90">
                 <span class="flex items-center gap-1.5">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                     Sin tarjeta de crédito

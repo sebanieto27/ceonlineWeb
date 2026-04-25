@@ -82,14 +82,16 @@
             </div>
             
             {{-- Dots Indicator --}}
-            <div class="flex justify-center gap-2 mt-6" role="tablist" aria-label="Testimonios">
+            <div class="flex justify-center items-center mt-4" role="tablist" aria-label="Testimonios">
                 <template x-for="(t, index) in testimonials" :key="index">
                     <button @click="active = index" 
                             :aria-label="'Ir al testimonio ' + (index + 1)"
                             role="tab"
                             :aria-selected="active === index"
-                            class="h-1.5 transition-all duration-500 rounded-full"
-                            :class="active === index ? 'w-12 bg-primary' : 'w-3 bg-gray-300 hover:bg-primary/30'"></button>
+                            class="p-3 focus:outline-none group">
+                        <div class="h-2 transition-all duration-500 rounded-full"
+                             :class="active === index ? 'w-12 bg-primary' : 'w-3 bg-gray-300 group-hover:bg-primary/50'"></div>
+                    </button>
                 </template>
             </div>
         </div>

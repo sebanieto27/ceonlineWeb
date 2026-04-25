@@ -10,6 +10,11 @@ class ListNewsletterSubscribers extends ListRecords
 {
     protected static string $resource = NewsletterSubscriberResource::class;
 
+    public function getSubheading(): ?string
+    {
+        return 'Personas suscriptas al newsletter desde el sitio. Podés exportarlos para enviar campañas de email marketing.';
+    }
+
     protected function getHeaderActions(): array
     {
         return [

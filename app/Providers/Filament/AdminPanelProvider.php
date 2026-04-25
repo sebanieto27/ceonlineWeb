@@ -2,11 +2,15 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\NewsletterHealthWidget;
+use App\Filament\Widgets\SeoHealthWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\HtmlString;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -27,11 +31,22 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admincrm')
             ->login()
-            ->brandName('CEOnline Marketing')
+            ->brandName('CEOnline CRM')
+            ->favicon(asset('logo/logo-ceonline2.png'))
+            ->brandLogo(asset('logo/logo-ceonline2.png'))
+            ->brandLogoHeight('2.2rem')
+            ->sidebarCollapsibleOnDesktop()
+            ->collapsibleNavigationGroups()
+            ->maxContentWidth(\Filament\Support\Enums\MaxWidth::Full)
+            ->font('Plus Jakarta Sans')
+            ->renderHook(
+                PanelsRenderHook::HEAD_END,
+                fn () => new HtmlString('<link rel="stylesheet" href="' . asset('css/crm-custom.css') . '?v=1">')
+            )
             ->colors([
-                'primary' => Color::Cyan,
-                'danger' => Color::Red,
-                'info' => Color::Blue,
+                'primary' => Color::hex('#0B75B2'),
+                'danger'  => Color::Red,
+                'info'    => Color::Sky,
                 'success' => Color::Emerald,
                 'warning' => Color::Amber,
             ])
@@ -41,7 +56,10 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([])
+            ->widgets([
+                SeoHealthWidget::class,
+                NewsletterHealthWidget::class,
+            ])
             ->navigationGroups([
                 'CRM',
                 'Marketing',

@@ -21,6 +21,8 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Contenido';
 
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $modelLabel = 'Categoría';
 
     protected static ?string $pluralModelLabel = 'Categorías';

@@ -1,0 +1,171 @@
+/* ─────────────────────────────────────────────────────────────────
+   CEOnline CRM — Custom Panel Styles
+   Cargado vía render hook (NO reemplaza el CSS base de Filament).
+   ─────────────────────────────────────────────────────────────────*/
+
+/* ── Variables ───────────────────────────────────────────────────── */
+:root {
+    --ceo-sidebar-bg:      #0f172a;
+    --ceo-sidebar-hover:   rgba(255,255,255,0.07);
+    --ceo-sidebar-active:  rgba(11, 117, 178, 0.2);
+    --ceo-sidebar-text:    #cbd5e1;
+    --ceo-sidebar-dim:     #64748b;
+    --ceo-sidebar-border:  rgba(255,255,255,0.06);
+}
+
+/* ── Sidebar — navy oscuro (solo en desktop con sidebar sticky) ─── */
+.fi-sidebar-header {
+    background-color: var(--ceo-sidebar-bg) !important;
+    border-bottom: 1px solid var(--ceo-sidebar-border) !important;
+}
+
+.fi-sidebar-nav {
+    background-color: var(--ceo-sidebar-bg) !important;
+}
+
+@media (min-width: 1024px) {
+    .fi-sidebar {
+        background-color: var(--ceo-sidebar-bg) !important;
+        border-right: 1px solid var(--ceo-sidebar-border) !important;
+        box-shadow: none !important;
+    }
+}
+
+@media (max-width: 1023px) {
+    .fi-sidebar {
+        background-color: var(--ceo-sidebar-bg) !important;
+    }
+}
+
+/* ── Items del sidebar ───────────────────────────────────────────── */
+.fi-sidebar-item-button {
+    color: var(--ceo-sidebar-text) !important;
+}
+
+.fi-sidebar-item-button:hover,
+.fi-sidebar-item-button:focus-visible {
+    background-color: var(--ceo-sidebar-hover) !important;
+    color: #ffffff !important;
+}
+
+.fi-sidebar-item.fi-active .fi-sidebar-item-button {
+    background-color: var(--ceo-sidebar-active) !important;
+    color: #60c8ff !important;
+}
+
+/* Íconos */
+.fi-sidebar-item-button .fi-sidebar-item-icon {
+    color: var(--ceo-sidebar-dim) !important;
+}
+.fi-sidebar-item-button:hover .fi-sidebar-item-icon {
+    color: #ffffff !important;
+}
+.fi-sidebar-item.fi-active .fi-sidebar-item-icon {
+    color: #60c8ff !important;
+}
+
+/* ── Grupos de nav ───────────────────────────────────────────────── */
+.fi-sidebar-group-label {
+    color: var(--ceo-sidebar-dim) !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+}
+
+.fi-sidebar-group-collapse-button {
+    color: var(--ceo-sidebar-dim) !important;
+}
+.fi-sidebar-group-collapse-button:hover {
+    color: var(--ceo-sidebar-text) !important;
+}
+
+/* ── Topbar ──────────────────────────────────────────────────────── */
+.fi-topbar nav {
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.dark .fi-topbar nav {
+    background-color: #1e293b !important;
+    border-bottom-color: rgba(255,255,255,0.06) !important;
+}
+
+/* ── Page headings ───────────────────────────────────────────────── */
+.fi-header-heading {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+}
+
+.fi-header-subheading {
+    color: #64748b !important;
+    font-size: 0.875rem !important;
+}
+
+.dark .fi-header-subheading {
+    color: #94a3b8 !important;
+}
+
+/* ── Secciones ───────────────────────────────────────────────────── */
+.fi-section {
+    border-radius: 12px !important;
+}
+
+/* ── Tablas ──────────────────────────────────────────────────────── */
+.fi-ta-header-cell {
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    color: #64748b !important;
+}
+
+.dark .fi-ta-header-cell {
+    color: #94a3b8 !important;
+}
+
+/* ── Botones primarios ───────────────────────────────────────────── */
+.fi-btn[class*="fi-btn-color-primary"] {
+    background: linear-gradient(135deg, #0B75B2 0%, #0991d6 100%) !important;
+    box-shadow: 0 2px 5px rgba(11,117,178,0.30) !important;
+}
+
+/* ── Badges ──────────────────────────────────────────────────────── */
+.fi-badge {
+    border-radius: 6px !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+}
+
+/* ── Stats widgets ───────────────────────────────────────────────── */
+.fi-wi-stats-overview-stat {
+    border-radius: 12px !important;
+}
+
+/* ── Login ───────────────────────────────────────────────────────── */
+.fi-simple-main {
+    background: linear-gradient(135deg, #0f172a 0%, #0B75B2 100%) !important;
+}
+
+.fi-simple-page {
+    box-shadow: 0 24px 64px rgba(0,0,0,0.25) !important;
+    border-radius: 16px !important;
+}
+
+/* ── Dropdown / Notificaciones ───────────────────────────────────── */
+.fi-dropdown-panel {
+    border-radius: 10px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+}
+
+.fi-notification {
+    border-radius: 12px !important;
+}
+
+/* ── Scrollbar del sidebar ───────────────────────────────────────── */
+.fi-sidebar ::-webkit-scrollbar        { width: 4px; }
+.fi-sidebar ::-webkit-scrollbar-track  { background: transparent; }
+.fi-sidebar ::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.15); border-radius: 4px; }
+.fi-sidebar ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }

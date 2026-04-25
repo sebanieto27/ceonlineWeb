@@ -24,6 +24,11 @@ class WhatsappSettings extends Page implements HasForms
 
     protected static ?int $navigationSort = 101;
 
+    public function getSubheading(): ?string
+    {
+        return 'Activá y configurá el botón flotante verde que aparece en todas las páginas del sitio para que los visitantes te escriban por WhatsApp.';
+    }
+
     protected static string $view = 'filament.pages.whatsapp-settings';
 
     public ?array $data = [];

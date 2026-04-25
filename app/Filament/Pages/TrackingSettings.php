@@ -24,6 +24,11 @@ class TrackingSettings extends Page implements HasForms
 
     protected static ?int $navigationSort = 100;
 
+    public function getSubheading(): ?string
+    {
+        return 'Configurá los IDs de Google Tag Manager, GA4, Meta Pixel y LinkedIn. Los scripts se insertan automáticamente en el sitio.';
+    }
+
     protected static string $view = 'filament.pages.tracking-settings';
 
     public ?array $data = [];

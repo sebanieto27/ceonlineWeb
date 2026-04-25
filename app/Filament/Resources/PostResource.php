@@ -100,6 +100,11 @@ class PostResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->limit(50),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Categoría')
+                    ->badge()
+                    ->color('gray')
+                    ->placeholder('Sin categoría'),
                 Tables\Columns\IconColumn::make('is_published')
                     ->label('Estado')
                     ->boolean(),

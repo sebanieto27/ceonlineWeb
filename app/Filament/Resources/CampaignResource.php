@@ -148,13 +148,15 @@ class CampaignResource extends Resource
                     ->label('Campaña')
                     ->searchable()
                     ->weight('bold'),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label('Estado')
-                    ->colors([
-                        'success' => 'active',
-                        'warning' => 'paused',
-                        'danger' => 'ended',
-                    ])
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success',
+                        'paused' => 'warning',
+                        'ended' => 'danger',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         'active' => 'Activa',
                         'paused' => 'Pausada',

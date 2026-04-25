@@ -109,19 +109,21 @@ class BannerResource extends Resource
                     ->label('Título')
                     ->searchable()
                     ->weight('bold'),
-                Tables\Columns\BadgeColumn::make('type')
+                Tables\Columns\TextColumn::make('type')
                     ->label('Tipo')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'top_bar' => 'info',
+                        'popup' => 'warning',
+                        'bottom_bar' => 'success',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn ($state) => match ($state) {
                         'top_bar' => 'Barra superior',
                         'popup' => 'Popup',
                         'bottom_bar' => 'Barra inferior',
                         default => $state,
-                    })
-                    ->colors([
-                        'info' => 'top_bar',
-                        'warning' => 'popup',
-                        'success' => 'bottom_bar',
-                    ]),
+                    }),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Activo')
                     ->boolean(),

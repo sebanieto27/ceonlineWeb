@@ -10,6 +10,11 @@ class ListCategories extends ListRecords
 {
     protected static string $resource = CategoryResource::class;
 
+    public function getSubheading(): ?string
+    {
+        return 'Categorías para organizar los artículos del blog. Creá las categorías primero antes de publicar posts.';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
